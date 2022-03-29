@@ -1,5 +1,5 @@
 # Hi, there
-# my name is gregoryk07
+# My name is gregoryk07
 ## I'm working on some projects that may be released soon
 ## *"but actually no one knows..."*
 ## here's list of projects
