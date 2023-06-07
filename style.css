@@ -45,9 +45,12 @@ footer li a:hover{
     text-decoration: underline;
 }
 .gameinfo{
-    display: flex;
+    /*display: flex;*/
     width: 70%;
     margin: auto;
+}
+.gameinfo>*{
+    display: inline-block;
 }
 #gameimg div{
     overflow: hidden;
