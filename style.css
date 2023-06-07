@@ -1,180 +1,66 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-}
-html{
+body{
     background-color: darkslategray;
+    font-family: Helvetica, sans-serif;
+    margin: 0px;
 }
-a{
-    text-decoration: none;
-    color: white;
-}
-header>nav>ul>li>a{
-    padding: 14px 28px;
-    border-radius: 10px;
-    margin: 10px 3px;
-    color:white;
+.logo{
     font-weight: bold;
-    background-color: orange;
-    transition-duration: 400ms;
-    display: inline-block;
-}
-header>nav>ul>li{
-    list-style: none;
-    display: inline-block;
-}
-header>nav>ul>li>a:hover{
-    background-color: orangered;
-}
-body>header{
-    background-color:lightseagreen;
-    color:white;
-    padding: 32px;
-}
-hgroup{
-    display: inline-block;
-    margin: 25px 32px;
-}
-nav{
-    display: inline-block;
-}
-.artcontain{
-    width: 90%;
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-article{
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
+    font-size: larger;
 }
 footer{
-    padding-top: 10px;  
+    color: white;
     text-align: center;
 }
-hr{
-    margin: 120px 100px 20px 100px;
-}
-article>p{
-    text-align: justify;
-    margin: 20px;
-    font-size: 20px;
-    margin-left: 10px;
-}
-footer>nav>ul{
-    list-style: none;
-    display: flex;
-}
-footer>nav>ul>li{
-    margin: 10px;
-}
-.button{
-    transition-duration: 400ms;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 5px solid orange;
-    border-radius: 25px;
+footer li a{
     color: white;
+}
+footer li{
+    list-style: none;
+}
+article{
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 15px;
+}
+article a{
+    color: orange;
+    text-decoration: underline;
+    transition-duration: 0s;
+}
+article a:hover{
+    color: rgb(205, 113, 0);
+}
+#footercontent{
     display: inline-block;
-    padding: 10px;
-    margin: 10px;
+    width: 100%;
+    text-align: center;
 }
-.button:hover{
-    background-color: orange;
+footer ul{
+    padding-left: 0; padding-right: 0;
+    margin-left: 0; margin-right: 0;
 }
-.outline{
-    text-shadow: -1px -1px black,
-    -1px 1px black,
-    1px -1px black,
-    1px 1px black;
-}
-/* width */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-
-}
-
-  /* Track */
-::-webkit-scrollbar-track {
-    background: transparent
-}
-
-  /* Handle */
-::-webkit-scrollbar-thumb {
-    background: #373737;
-    border-radius: 50px;
-}
-
-  /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #272727;
-}
-div.gamemenu {
-    background-color: #333;
-    margin: auto;
-    width: 80%;
-    border-radius: 10px;
-    display: flex;
-    margin-top: 55px;
-}
-div.gamemenuelem{
-    flex: 1;
-    transition-duration: 1s;
-    margin: 5px;
-    border-radius: 10px;
-    background-color:rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-div.gamemenuelem img {
-    height: 384px;
-}
-  
-div.gamemenuelem:hover{
-    flex: 3.5;
-}
-article h2{
-    margin: 10px;
-}
-p{
-    margin-left: 20px;
-}
-.artcontain>h1,.artcontain>h2{
-    margin-left: 20px;
-}
-article>img{
-    margin: 10px;
-    border-radius: 25px;
-}
-#download+article{
-    min-height: 560px;
-}
-.artcontain>nav>ul{
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 50px;
-}
-a.link{
+footer li a:hover{
     text-decoration: underline;
 }
-a.link:hover{
-    color:blue;
+.gameinfo{
+    display: flex;
+    width: 70%;
+    margin: auto;
 }
-a.link:visited{
-    color:lightblue;
+#gameimg div{
+    overflow: hidden;
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
 }
-ol{
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 40px;
+.ginfo{
+    margin: 10px;
+    flex: 10;
 }
-ol>li{
-    margin-top: 3px;
-    margin-bottom: 3px;
+#startinggame{
+    background-color: black;
+    width: 100%;
+    height: 1080px;
 }

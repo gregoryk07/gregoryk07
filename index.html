@@ -5,27 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
-    <meta name="creator" content="gregoryk07">
-    <meta name="author" content="gregoryk07">
+    <link rel="stylesheet" href="navbarstyle.css">
+    <link rel="stylesheet" href="buttonstyle.css">
+    <link rel="stylesheet" href="cardstyle.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <a href="index.html">
-            <hgroup>
-                <h1>GREGORYK07</h1>
-                <p>Beginner game developer</p>
-            </hgroup>
-        </a>
-        <nav>
-            <ul>
-                <li><a class="outline" href="games.html">GAMES</a></li>
-                <li><a class="outline" href="about.html">ABOUT</a></li>
-                <li><a class="outline" href="tools.html">TOOLS</a></li>
+    <nav class="navbar">
+        <a href="index.html" class="logo">GREGORYK07</a>
+        <input type="checkbox" id="toggler">
+        <label for="toggler"><div class="ri-menu-line"><img height=20px src="menuico.png"></div></label>
+        <div class="menu">
+            <ul class="list">
+                <li><a href="index.html"><button class="button">Home</button></a></li>
+                <li><a href="about.html"><button class="button">About</button></a></li>
+                <li><a href="games.html"><button class="button">Games</button></a></li>
+                <li><a href="tools.html"><button class="button">Tools</button></a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
     <div class="artcontain">
         <article>
             <header>
@@ -58,6 +57,7 @@
             </p>
         </article>
     </div>
+    <div id="footercontent">
     <hr>
     <footer>
         <p>&copy; Copyright gregoryk07 2023</p>
@@ -68,5 +68,9 @@
             </ul>
         </nav>
     </footer>
+    </div>
+    <!--
+    Rainbow Button    
+        <a href="#"><button class="button">ELO</button></a>-->
 </body>
 </html>
