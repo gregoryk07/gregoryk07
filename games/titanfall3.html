@@ -5,70 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
-    <link rel="stylesheet" href="../navbarstyle.css">
-    <link rel="stylesheet" href="../buttonstyle.css">
-    <link rel="stylesheet" href="../cardstyle.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="../popupstyle.css">
-    <meta property="og:title" content="TITANFALL 3 | GREGORYK07">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="../404.png">
-    <meta property="og:url" content="https://gregoryk07.github.io/gregoryk07/games/titanfall3.html">
     <script src="../script.js"></script>
+    <link rel="stylesheet" href="gamegridstyle.css">
 </head>
 <body>
     <div id="panel" style="display: none">
-    <div>
-        <h1>POGLauncher has been launched</h1>
+    <div id="panelw">
+        <h1>POG Launcher has been launched</h1>
         <p>If it didn't launch, it probably isn't updated to the latest version or you don't have it installed.</p>
-        <button onclick="hidePopup()" class="lbutton">OK</button><br><br><a href="#"><button class="lbutton">Download POGLauncher</button></a>
+        <button onclick="hidePopup()" class="lbutton">OK</button><br><br><a target="_blank" href="https://github.com/gregoryk07/POGLauncher/releases/tag/POGLauncher"><button class="lbutton">Download POGLauncher</button></a>
+    </div>
+    <div id="panelo" style="display: none">
+        <h1>Uh oh!</h1>
+        <p>POG Launcher along with all this game here is supported on Windows only. Visit this page on your Windows PC instead.</p>
+        <a><button onclick="hidePopup()" class="lbutton">OK</button></a>
     </div>
     </div>
-    <nav class="navbar">
-        <a href="../index.html" class="logo">GREGORYK07</a>
-        <input type="checkbox" id="toggler">
-        <label for="toggler"><div class="ri-menu-line"><img height=20px src="../menuico.png"></div></label>
-        <div class="menu">
-            <ul class="list">
-                <li><a href="../index.html"><button class="button">Home</button></a></li>
-                <li><a href="../about.html"><button class="button">About</button></a></li>
-                <li><a href="../games.html"><button class="button">Games</button></a></li>
-                <li><a href="../tools.html"><button class="button">Tools</button></a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="artcontain">
-        <article>
-            <div class="gameinfo">
-                <div id="gameimg">
-                    <div>
-                <img src="../404.png" height="200px">
-                </div>
-                </div>
-                <div class="ginfo">
-                    <h1>Titanfall 3</h1>
-                    <p>Making Titanfall 3 because respawn can't...</p>
-                    <a onclick="showPopup()" href="pog://game0"><button class="lbutton">Download via POGLauncher</button></a>
+    <input type="checkbox" id="toggler">
+    <div id="front">
+        <div id="main">
+            <nav id="nav"><a href="../index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="../menuico.png" height="20px" width="20px"></label><ul>
+                <a href="../games.html"><li>GAMES</li></a>
+                <a href="../about.html"><li>ABOUT</li></a>
+                <a href="../tools.html"><li>TOOLS</li></a>
+            </ul></nav>
+            <div id="scrollview">
+                <div id="grid">
+                    <article id="grid-name">
+                        <h2>Titanfall 3</h2>
+                    </article>
+                    <article id="grid-photos">
+                        <img src="../404.png" width="100%">
+                    </article>
+                    <article id="grid-description">
+                        Making Titanfall 3 because respawn can't...
+                    </article>
+                    <article id="grid-links">
+                        <a onclick="showPopup()" href="pog://game0"><button class="lbutton">DOWNLOAD via POG Launcher</button></a>
+                    </article>
                 </div>
             </div>
-        </article>
-        
+            <footer>
+                <hr>
+                &copy; Copyright gregoryk07 2024<br>
+                <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
+            </footer>
+        </div>
     </div>
-    <div id="footercontent">
-    <hr>
-    <footer>
-        <p>&copy; Copyright gregoryk07 2023</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Games privacy policy</a></li>
-                <li><a href="instructions.html">Tools instructions</a></li>
-            </ul>
-        </nav>
-    </footer>
-    </div>
-    <!--
-    Rainbow Button    
-        <a href="#"><button class="button">ELO</button></a>-->
 </body>
+<script src="../scriptafter.js"></script>
 </html>

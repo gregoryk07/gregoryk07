@@ -2,149 +2,206 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
-    <link rel="stylesheet" href="navbarstyle.css">
-    <link rel="stylesheet" href="buttonstyle.css">
-    <link rel="stylesheet" href="cardstyle.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <meta property="og:title" content="GAMES | GREGORYK07">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="favicon.png">
-    <meta property="og:url" content="https://gregoryk07.github.io/gregoryk07/games.html">
+    <link rel="stylesheet" href="gameliststyle.css">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">GREGORYK07</a>
-        <input type="checkbox" id="toggler">
-        <label for="toggler"><div class="ri-menu-line"><img height=20px src="menuico.png"></div></label>
-        <div class="menu">
-            <ul class="list">
-                <li><a href="index.html"><button class="button">Home</button></a></li>
-                <li><a href="about.html"><button class="button">About</button></a></li>
-                <li><a href="games.html"><button class="button">Games</button></a></li>
-                <li><a href="tools.html"><button class="button">Tools</button></a></li>
-            </ul>
+    <input type="checkbox" id="toggler">
+    <div id="front">
+        <div id="main">
+            <nav id="nav"><a href="index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="menuico.png" height="20px" width="20px"></label><ul>
+                <a href="games.html"><li>GAMES</li></a>
+                <a href="about.html"><li>ABOUT</li></a>
+                <a href="tools.html"><li>TOOLS</li></a>
+            </ul></nav>
+            <div id="scrollview">
+                <div id="gamelist">
+                <article>
+                    <div>
+                    <h1>
+                        Glitchfront
+                        </h1>
+                        <p>
+                        Singleplayer <abbr title="Third Person Player">TPP</abbr> shooter
+                    </p>
+                    </div>
+                    <a href="games/glitchfront.html">
+                    View
+                    </a>
+                </article>
+                <article>
+                    <div>
+                    <h1>
+                        Polylandia
+                        </h1>
+                        <p>
+                        FPP Shooter prototype
+                    </p>
+                    </div>
+                    <a href="games/polylandia.html">
+                    View
+                    </a>
+                </article>
+                <article>
+                    <div>
+                    <h1>
+                        Titanfall 3
+                        </h1>
+                        <p>
+                        Multiplayer FPS
+                    </p>
+                    </div>
+                    <a href="games/titanfall3.html">
+                    View
+                    </a>
+                </article>
+                <article>
+                    <div>
+                    <h1>
+                        NetSurfers
+                        </h1>
+                        <p>
+                        FPP Open World
+                    </p>
+                    </div>
+                    <a href="games/netsurfers.html">
+                    View
+                    </a>
+                </article>
+                <article>
+                    <div>
+                    <h1>
+                        Multiplayer Test
+                        </h1>
+                        <p>
+                        FPS Multiplayer Test
+                    </p>
+                    </div>
+                    <a href="games/mptest.html">
+                    View
+                    </a>
+                </article>
+                </div>
+                <article>
+                    <h2>Launcher</h2>
+                    <p>All the games are or will be added to POGLauncher which you can download <a href="https://github.com/gregoryk07/POGLauncher/releases/tag/POGLauncher">Here</a>.</p>
+                    <p>It is recomended to download it as it comes with automatic updates for games and itself.</p>
+                </article>
+                <article>
+                    <h2>NOTE</h2>
+                    <p>All the games mentioned above are NOT fully completed. They probably will be in the future.</p>
+                </article>
+                <!--
+                <article>
+                    <header>
+                        <h2>Games</h2>
+                    </header>
+                    <p>
+                        Below are games that are or were developed by me
+                    </p>
+                    <hr>
+                    <div class="cards">
+                    <div class="cardlayout">
+                        <div class="card">
+                            <div class="cardimage"><div class="imggradient"></div><img src="404.png" height="170px"></div>
+                            <div class="cardcontent">
+                                <h1>
+                                    Glitchfront
+                                    </h1>
+                                    <p>
+                                    Singleplayer <abbr title="Third Person Player">TPP</abbr> shooter
+                                </p>
+                                <a href="games/glitchfront.html">
+                                View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardlayout">
+                        <div class="card">
+                            <div class="cardimage"><div class="imggradient"></div><img src="polylandiabackground.png" height="170px"></div>
+                            <div class="cardcontent">
+                                <h1>
+                                    Polylandia
+                                    </h1>
+                                    <p>
+                                    FPP Shooter prototype
+                                </p>
+                                <a href="games/polylandia.html">
+                                View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardlayout">
+                        <div class="card">
+                            <div class="cardimage"><div class="imggradient"></div><img src="404.png" height="170px"></div>
+                            <div class="cardcontent">
+                                <h1>
+                                    Titanfall 3
+                                    </h1>
+                                    <p>
+                                    Multiplayer FPS
+                                </p>
+                                <a href="games/titanfall3.html">
+                                View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardlayout">
+                        <div class="card">
+                            <div class="cardimage"><div class="imggradient"></div><img src="netsurfersico.png" height="170px"></div>
+                            <div class="cardcontent">
+                                <h1>
+                                    NetSurfers
+                                    </h1>
+                                    <p>
+                                    FPP Open World
+                                </p>
+                                <a href="games/netsurfers.html">
+                                View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardlayout">
+                        <div class="card">
+                            <div class="cardimage"><div class="imggradient"></div><img src="404.png"  height="170px"></div>
+                            <div class="cardcontent">
+                                <h1>
+                                    Multiplayer Test
+                                    </h1>
+                                    <p>
+                                    FPS Multiplayer Test
+                                </p>
+                                <a href="games/mptest.html">
+                                View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <hr>
+                    <h2>Launcher</h2>
+                    <p>All the games are or will be added to POGLauncher which you can download <a href="https://github.com/gregoryk07/POGLauncher/releases/tag/POGLauncher">Here</a>.</p>
+                    <p>It is recomended to download it as it comes with automatic updates for games and itself.</p>
+                    <hr>
+                    <h2>NOTE</h2>
+                <p>All the games mentioned above are NOT fully completed. They probably will be in the future.</p>
+                </div>
+                </article>
+            -->
+            </div>
+            <footer>
+                <hr>
+                &copy; Copyright gregoryk07 2024<br>
+                <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
+            </footer>
         </div>
-    </nav>
-    <div class="artcontain">
-        <article>
-            <header>
-                <h2>Games</h2>
-            </header>
-            <p>
-                Below are games that are or were developed by me
-            </p>
-            <hr>
-            <div class="cards">
-            <div class="cardlayout">
-                <div class="card">
-                    <div class="cardimage"><div class="imggradient"></div><img src="404.png" height="170px"></div>
-                    <div class="cardcontent">
-                        <h1>
-                            Glitchfront
-                            </h1>
-                            <p>
-                            Singleplayer <abbr title="Third Person Player">TPP</abbr> shooter
-                        </p>
-                        <a href="games/glitchfront.html">
-                        <button class="button">View</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="cardlayout">
-                <div class="card">
-                    <div class="cardimage"><div class="imggradient"></div><img src="polylandiabackground.png" height="170px"></div>
-                    <div class="cardcontent">
-                        <h1>
-                            Polylandia
-                            </h1>
-                            <p>
-                            FPP Shooter prototype
-                        </p>
-                        <a href="games/polylandia.html">
-                        <button class="button">View</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="cardlayout">
-                <div class="card">
-                    <div class="cardimage"><div class="imggradient"></div><img src="404.png" height="170px"></div>
-                    <div class="cardcontent">
-                        <h1>
-                            Titanfall 3
-                            </h1>
-                            <p>
-                            Multiplayer FPS
-                        </p>
-                        <a href="games/titanfall3.html">
-                        <button class="button">View</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="cardlayout">
-                <div class="card">
-                    <div class="cardimage"><div class="imggradient"></div><img src="netsurfersico.png" height="170px"></div>
-                    <div class="cardcontent">
-                        <h1>
-                            NetSurfers
-                            </h1>
-                            <p>
-                            FPP Open World
-                        </p>
-                        <a href="games/netsurfers.html">
-                        <button class="button">View</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="cardlayout">
-                <div class="card">
-                    <div class="cardimage"><div class="imggradient"></div><img src="404.png"  height="170px"></div>
-                    <div class="cardcontent">
-                        <h1>
-                            Multiplayer Test
-                            </h1>
-                            <p>
-                            FPS Multiplayer Test
-                        </p>
-                        <a href="games/mptest.html">
-                        <button class="button">View</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <hr>
-            <h2>Launcher</h2>
-            <p>All the games are or will be added to POGLauncher which you can download <a href="https://github.com/gregoryk07/POGLauncher/releases/tag/POGLauncher">Here</a>.</p>
-            <p>It is recomended to download it as it comes with automatic updates for games and itself.</p>
-            <hr>
-            <h2>NOTE</h2>
-        <p>All the games mentioned above are NOT fully completed. They probably will be in the future.</p>
-        </div>
-        </article>
-        
     </div>
-    <div id="footercontent">
-    <hr>
-    <footer>
-        <p>&copy; Copyright gregoryk07 2023</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Games privacy policy</a></li>
-                <li><a href="instructions.html">Tools instructions</a></li>
-            </ul>
-        </nav>
-    </footer>
-    </div>
-    <!--
-    Rainbow Button    
-        <a href="#"><button class="button">ELO</button></a>-->
 </body>
 </html>

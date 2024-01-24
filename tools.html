@@ -2,67 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
-    <link rel="stylesheet" href="navbarstyle.css">
-    <link rel="stylesheet" href="buttonstyle.css">
-    <link rel="stylesheet" href="cardstyle.css">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <meta property="og:title" content="TOOLS| GREGORYK07">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="favicon.png">
-    <meta property="og:url" content="https://gregoryk07.github.io/gregoryk07/tools.html">
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="logo">GREGORYK07</a>
-        <input type="checkbox" id="toggler">
-        <label for="toggler"><div class="ri-menu-line"><img height=20px src="menuico.png"></div></label>
-        <div class="menu">
-            <ul class="list">
-                <li><a href="index.html"><button class="button">Home</button></a></li>
-                <li><a href="about.html"><button class="button">About</button></a></li>
-                <li><a href="games.html"><button class="button">Games</button></a></li>
-                <li><a href="tools.html"><button class="button">Tools</button></a></li>
-            </ul>
+    <input type="checkbox" id="toggler">
+    <div id="front">
+        <div id="main">
+            <nav id="nav"><a href="index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="menuico.png" height="20px" width="20px"></label><ul>
+                <a href="games.html"><li>GAMES</li></a>
+                <a href="about.html"><li>ABOUT</li></a>
+                <a href="tools.html"><li>TOOLS</li></a>
+            </ul></nav>
+            <div id="scrollview">
+                <article>
+                    <h1>
+                        Quick about
+                    </h1>
+                    <p>
+                        Tools below were made to help me make games and programs. I tried to make them as reusable as posibble.
+                    </p>
+                    <nav>
+                        <ul>
+                            <li><a href="#registerprotocol">Register Protocol</a></li>
+                        </ul>
+                    </nav>
+                    </article>
+                    <article>
+                    <h2 id="registerprotocol">Register Protocol</h2>
+                    <p>An command line tool that registers or removes URL protocol</p>
+                    <p>Check the instruction <a href="instructions.html#registerprotocol">here</a></p>
+                    <a href="https://github.com/gregoryk07/Tools/tree/RegisterProtocol" target="_blank">DOWNLOAD HERE</a>    
+                </article>
+            </div>
+            <footer>
+                <hr>
+                &copy; Copyright gregoryk07 2024<br>
+                <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
+            </footer>
         </div>
-    </nav>
-    <div class="artcontain">
-        <article>
-            <h1>
-                Quick about
-            </h1>
-            <p>
-                Tools below were made to help me make games and programs. I tried to make them as reusable as posibble.
-            </p>
-            <nav>
-                <ul>
-                    <li><a href="#registerprotocol">Register Protocol</a></li>
-                </ul>
-            </nav>
-            <hr style="margin-top: 40px;margin-bottom: 40px;">
-            <h2 id="registerprotocol">Register Protocol</h2>
-            <p>An command line tool that registers or removes URL protocol</p>
-            <p>Check the instruction <a href="instructions.html#registerprotocol" class="link">here</a></p>
-            <a href="https://github.com/gregoryk07/Tools/tree/RegisterProtocol" target="_blank"><button class="lbutton">DOWNLOAD HERE</button></a>    
-        </article>
     </div>
-    <div id="footercontent">
-    <hr>
-    <footer>
-        <p>&copy; Copyright gregoryk07 2023</p>
-        <nav>
-            <ul>
-                <li><a href="privacy.html">Games privacy policy</a></li>
-                <li><a href="instructions.html">Tools instructions</a></li>
-            </ul>
-        </nav>
-    </footer>
-    </div>
-    <!--
-    Rainbow Button    
-        <a href="#"><button class="button">ELO</button></a>-->
 </body>
 </html>
