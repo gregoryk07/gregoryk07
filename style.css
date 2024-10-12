@@ -118,7 +118,7 @@ ol li{
 #cardlayout{
     background-color: blue;
 }
-@media screen and (min-width: 760px){
+/*@media screen and (min-width: 760px){*/
     ::-webkit-scrollbar{
         width: 5px;
     }
@@ -126,13 +126,13 @@ ol li{
         background-color: rgb(35,35,35);
         border-radius: 2.5px;
     }
-}
+/*}*/
 @media screen and (max-width: 759px){
     #nav{
         margin: 0 auto;
-        left: 4px;
+        /* left: 4px; */
         top: 6px;
-        width: calc(97% - 30px);
+        width: calc(100% - 40px);
         position: absolute;
         transition-duration: 400ms;
     }
