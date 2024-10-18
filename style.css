@@ -76,10 +76,18 @@ body{
     padding: 5px 10px;
     transition-duration: 400ms;
     border-radius: 10px;
-    background-color: rgba(121, 121, 121, 0.5);
+    background-color: rgba(121, 121, 121, 0);
 }
 #nav li:hover{
     background-color: rgba(43, 43, 43, 0.5);
+}
+nav hr{
+    width: 0px;
+    height: 15px;
+    padding: 0;
+    margin: 0;
+    border: solid gray 1px;
+    display: inline-block;
 }
 footer hr{margin: 20px;}
 footer{
@@ -161,6 +169,9 @@ ol li{
     }
     #nav li:hover{
         background-color: rgba(126, 126, 126, 0.5);
+    }
+    #nav hr{
+        display: none;
     }
     #front{
         margin-top: 78px;

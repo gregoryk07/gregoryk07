@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="instructions-style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
 </head>
@@ -13,9 +14,7 @@
     <div id="front">
         <div id="main">
             <nav id="nav"><a href="index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="menuico.png" height="20px" width="20px"></label><ul>
-                <a href="games.html"><li>GAMES</li></a>
-                <a href="about.html"><li>ABOUT</li></a>
-                <a href="tools.html"><li>TOOLS</li></a>
+                <hr><a href="games.html"><li>GAMES</li></a><hr><a href="about.html"><li>ABOUT</li></a><hr><a href="tools.html"><li>TOOLS</li></a><hr>
             </ul></nav>
             <div id="scrollview">
                 <article>
@@ -27,15 +26,52 @@
                     </p>
                     <nav>
                         <ul>
-                            <li><a href="#registerprotocol">Register Protocol</a></li>
+                            <li><a href="#registerprotocol">Register Protocol</a></li><br>
+                            <li><a href="#gcalc">Command line Graphic Calculator</a></li>
                         </ul>
                     </nav>
                     </article>
-                    <article>
-                    <h2 id="registerprotocol">Register Protocol</h2>
+                    <article id="registerprotocol">
+                    <!-- <h2 id="registerprotocol">Register Protocol</h2>
                     <p>An command line tool that registers or removes URL protocol</p>
                     <p>Check the instruction <a href="instructions.html#registerprotocol">here</a></p>
-                    <a href="https://github.com/gregoryk07/Tools/tree/RegisterProtocol" target="_blank">DOWNLOAD HERE</a>    
+                    <a href="https://github.com/gregoryk07/Tools/tree/RegisterProtocol" target="_blank">DOWNLOAD HERE</a>     -->
+                    <input type="checkbox" id="section1">
+                    <div class="cntnt">
+                    <div class="head">
+                        <div class="content">Register Protocol</div>
+                        <label for="section1" style="font-size: 50px">
+                            <img src="arrow.png" width="50px" height="50px" alt="">
+                        </label>
+                    </div>
+                    <hr>
+                        <div class="desc">
+                    <p>An command line tool that registers or removes URL protocol</p>
+                    <p>Check the instruction <a href="instructions.html#registerprotocol">here</a></p>
+                    <a href="https://github.com/gregoryk07/Tools/tree/RegisterProtocol" target="_blank">DOWNLOAD HERE</a>
+                        </div>
+                    </div>
+                </article>
+                <article id="gcalc">
+                    <!-- <h2 id="registerprotocol">Register Protocol</h2>
+                    <p>An command line tool that registers or removes URL protocol</p>
+                    <p>Check the instruction <a href="instructions.html#registerprotocol">here</a></p>
+                    <a href="https://github.com/gregoryk07/Tools/tree/RegisterProtocol" target="_blank">DOWNLOAD HERE</a>     -->
+                    <input type="checkbox" id="section2">
+                    <div class="cntnt">
+                    <div class="head">
+                        <div class="content">Command line Graphic Calculator</div>
+                        <label for="section2" style="font-size: 50px">
+                            <img src="arrow.png" width="50px" height="50px" alt="">
+                        </label>
+                    </div>
+                    <hr>
+                        <div class="desc">
+                    <p>Fully functional graphic calculator inside of a command line</p>
+                    <p>Check the instruction <a href="instructions.html#gcalc">here</a></p>
+                    <a href="https://github.com/gregoryk07/gcalc/releases/tag/Release" target="_blank">DOWNLOAD HERE</a>
+                        </div>
+                    </div>
                 </article>
             </div>
             <footer>

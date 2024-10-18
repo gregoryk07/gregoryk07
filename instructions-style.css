@@ -1,0 +1,42 @@
+article>.cntnt{
+    height: 50px;
+    width: calc(100% - 40px);
+    overflow: hidden;
+    transition-duration: 400ms;
+}
+.cntnt>.head{
+    height: 50px;
+}
+input[type="checkbox"]{
+    display: none;
+}
+.content{
+    display: inline-block;
+    width: calc(100% - 100px);
+    transform: translate(0, -18px);
+    font-size: 25px;
+    font-weight: bold;
+}
+.head label{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+label>img{
+    transition-duration: 200ms;
+}
+input[type="checkbox"]:checked ~ .cntnt>.head>label>img{
+    transform: rotateZ(-90deg);
+}
+input[type="checkbox"]:checked ~ .cntnt{
+    height: fit-content;
+}
+.btn{
+    background-color: rgb(0, 84,128);
+    width: 200px;
+    height: 100px;
+}
+.desc{
+    padding: 10px;
+}

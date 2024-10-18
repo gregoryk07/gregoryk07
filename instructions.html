@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="instructions-style.css">
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
 </head>
@@ -13,12 +14,10 @@
     <div id="front">
         <div id="main">
             <nav id="nav"><a href="index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="menuico.png" height="20px" width="20px"></label><ul>
-                <a href="games.html"><li>GAMES</li></a>
-                <a href="about.html"><li>ABOUT</li></a>
-                <a href="tools.html"><li>TOOLS</li></a>
+                <hr><a href="games.html"><li>GAMES</li></a><hr><a href="about.html"><li>ABOUT</li></a><hr><a href="tools.html"><li>TOOLS</li></a><hr>
             </ul></nav>
             <div id="scrollview">
-                <article>
+                <!-- <article>
                     <h2>Tools list</h2>
                 <nav>
                     <ul>
@@ -35,7 +34,56 @@
                     <li>Third argument takes information about program name.</li>
                     <li>Fourth argument is simply add or remove. It decides if tool adds or removes an protocol.</li>
                 </ol>
-            </div>
+                </article> -->
+                <article>
+                    <h2>Tools list</h2>
+                    <nav>
+                        <ul>
+                            <li><a href="#registerprotocol">Register Protocol</a></li><br>
+                            <li><a href="#gcalc">Command line Graphic Calculator</a></li>
+                        </ul>
+                    </nav>
+                </article>
+                <article id="registerprotocol">
+                    <input type="checkbox" id="section1">
+                    <div class="cntnt">
+                    <div class="head">
+                        <div class="content">Register Protocol</div>
+                        <label for="section1" style="font-size: 50px">
+                            <img src="arrow.png" width="50px" height="50px" alt="">
+                        </label>
+                    </div>
+                    <hr>
+                        <div class="desc">
+                            <p>This command line tool takes 4 arguments. It won't work if there are more or less than that.</p>
+                            <ol>
+                                <li>First argument takes absolute path to the program you want to use protocol for.</li>                                <li>Second argument takes information about how will the protocol look like, for example if you put "protocol" as argument the protocol will be "protocol://"</li>
+                                <li>Third argument takes information about program name.</li>
+                                <li>Fourth argument is simply add or remove. It decides if tool adds or removes an protocol.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+                <article id="gcalc">
+                    <input type="checkbox" id="section2">
+                    <div class="cntnt">
+                    <div class="head">
+                        <div class="content">Command line Graphic Calculator</div>
+                        <label for="section2" style="font-size: 50px">
+                            <img src="arrow.png" width="50px" height="50px" alt="">
+                        </label>
+                    </div>
+                    <hr>
+                        <div class="desc">
+                            <!-- <p>This command line tool takes 4 arguments. It won't work if there are more or less than that.</p>
+                            <ol>
+                                <li>First argument takes absolute path to the program you want to use protocol for.</li>                                <li>Second argument takes information about how will the protocol look like, for example if you put "protocol" as argument the protocol will be "protocol://"</li>
+                                <li>Third argument takes information about program name.</li>
+                                <li>Fourth argument is simply add or remove. It decides if tool adds or removes an protocol.</li>
+                            </ol> -->
+                            <p>Type "gcalc" in command line or </p>
+                        </div>
+                    </div>
                 </article>
             </div>
             <footer>
