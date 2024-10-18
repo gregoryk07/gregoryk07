@@ -4,6 +4,9 @@ article>.cntnt{
     overflow: hidden;
     transition-duration: 400ms;
 }
+body{
+    min-width: 421px;
+}
 .cntnt>.head{
     height: 50px;
 }
@@ -12,10 +15,11 @@ input[type="checkbox"]{
 }
 .content{
     display: inline-block;
-    width: calc(100% - 100px);
+    
     transform: translate(0, -18px);
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
+    width: calc(100% - 55px);
 }
 .head label{
     display: inline-block;
