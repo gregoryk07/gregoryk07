@@ -4,9 +4,6 @@ article>.cntnt{
     overflow: hidden;
     transition-duration: 400ms;
 }
-body{
-    min-width: 421px;
-}
 .cntnt>.head{
     height: 50px;
 }
