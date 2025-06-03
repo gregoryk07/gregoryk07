@@ -373,3 +373,84 @@ function pause(){
 
 document.getElementById("pauseMenu").style.display = "none";
 mainLoopStart();
+
+function exportMap(){
+    editorObjects = document.getElementsByClassName("enviroment");
+
+    var part1 = screensizex + "x" + screensizey;
+
+
+
+
+
+    var part2 = "";
+
+    for(var i = 0; i < editorObjects.length; i++)
+    {
+        var spritePath = String(editorObjects[i].style.background).split("\"")[1];
+
+        part2 += editorObjects[i].getAttribute("posx") + "$" + 
+        editorObjects[i].getAttribute("posy") + "$" + 
+        editorObjects[i].getAttribute("sizex") + "$" + 
+        editorObjects[i].getAttribute("sizey") + "$" + 
+        editorObjects[i].getAttribute("vaultable") + "$" + 
+        spritePath;
+
+        if(i + 1 < editorObjects.length) part2 += "&";
+    }
+
+    var fullPart = part1 + "???" + part2;
+
+    document.getElementById("mapcodetextarea").value = fullPart;
+}
+
+function importMap(){
+    editorObjects = document.getElementsByClassName("enviroment");
+    
+    for(var i = 0; i < editorObjects.length; i++)
+    {
+        editorObjects[i].remove();
+    }
+
+    
+    var fullpart = String(document.getElementById("mapcodetextarea").value);
+
+    var part1 = fullpart.split("???")[0];
+
+    var part2 = fullpart.split("???")[1];
+
+
+    document.getElementById("xsizeinput").value = Number(part1.split("x")[0]);
+
+    document.getElementById("ysizeinput").value = Number(part1.split("x")[1]);
+    setup();
+
+    var partedpart2 = part2.split("&");
+    for(var i = 0; i < partedpart2.length; i++){
+        var posx = partedpart2[i].split("$")[0];
+        var posy = partedpart2[i].split("$")[1];
+        var sizex = partedpart2[i].split("$")[2];
+        var sizey = partedpart2[i].split("$")[3];
+        var vaultable = partedpart2[i].split("$")[4]
+        var sprite = partedpart2[i].split("$")[5];
+
+
+        selectedObject = -1;
+        // console.log("NOTFOUND");
+        var newObject = document.createElement("div");
+        newObject.className = "enviroment";
+        newObject.setAttribute("posx", posx);
+        newObject.setAttribute("posy", posy);
+        newObject.setAttribute("sizex", sizex);
+        newObject.setAttribute("sizey", sizey);
+        newObject.setAttribute("vaultable", vaultable);
+        newObject.style.background = "url("+sprite+")";
+        newObject.style.width = sizex + "px";
+        newObject.style.height = sizey + "px";
+        newObject.style.transform = "translate("+posx+"px, " + posy + "px)";
+        newObject.style.backgroundSize = "64px 64px";
+        newObject.style.imageRendering = "pixelated"
+        newObject.style.position = "absolute";
+        document.getElementById("game").appendChild(newObject);
+    }
+}
