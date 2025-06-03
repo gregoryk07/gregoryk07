@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            font-family: Helvetica, sans-serif;
+        }
+        h2{
+            color: black;
+            padding: 10px 0;
+        }
+        body{
+            min-height: 500px;
+            height: 500px;
+        }
+        #player {
+            position: absolute;
+            width: 64px;
+            height: 64px;
+        }
+        #pausemenu button{
+            color: initial;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea platformer</title>
+    <link rel="shortcut icon" href="assets/tea_idle_2.png" type="image/x-icon">
+</head>
+<body style="width: 100%;"><!-- Width change here -->
+    <div id="game" style="background: url(assets/backgroundpage.jpg); background-size: 576px 100%; background-repeat: repeat-x; height: 576px; width: 4096px; image-rendering: pixelated;"> <!-- Width change here -->
+        <div id="cursorSprite" style="opacity: 0.5; position: absolute; background: url(assets/ground1_2.png); width: 64px; height: 64px; background-size: 64px 64px; image-rendering: pixelated; box-shadow: 2px 2px 2px 2px black; z-index: 10"></div>
+        <div class="enviroment" posx="0" posy="448" sizex="64" sizey="64" vaultable=0 
+        style="background: url(assets/ground1_2.png); width: 64px; height: 64px; transform: translate(0px, 448px); background-size: 64px 64px; image-rendering: pixelated; position: absolute;"></div>
+        <div class="enviroment" posx="64" posy="448" sizex="64" sizey="64" vaultable=0 
+        style="background: url(assets/ground1_2.png); width: 64px; height: 64px; transform: translate(64px, 448px); background-size: 64px 64px; image-rendering: pixelated; position: absolute;"></div>
+        <div class="enviroment" posx="128" posy="448" sizex="64" sizey="64" vaultable=0 
+        style="background: url(assets/ground1_2.png); width: 64px; height: 64px; transform: translate(128px, 448px); background-size: 64px 64px; image-rendering: pixelated; position: absolute;"></div>
+        <div class="enviroment" posx="0" posy="512" sizex="64" sizey="64" vaultable=0 
+        style="background: url(assets/ground1_2.png); width: 64px; height: 64px; transform: translate(0px, 512px); background-size: 64px 64px; image-rendering: pixelated; position: absolute;"></div>
+        <div class="enviroment" posx="64" posy="512" sizex="64" sizey="64" vaultable=0 
+        style="background: url(assets/ground1_2.png); width: 64px; height: 64px; transform: translate(64px, 512px); background-size: 64px 64px; image-rendering: pixelated; position: absolute;"></div>
+        <div class="enviroment" posx="128" posy="512" sizex="64" sizey="64" vaultable=0 
+        style="background: url(assets/ground1_2.png); width: 64px; height: 64px; transform: translate(128px, 512px); background-size: 64px 64px; image-rendering: pixelated; position: absolute;"></div>
+</div>
+<footer id="footerDiv" style="width: 100%; min-height: 50px;">
+<h2>DELETE to remove selected</h2>
+<h2>MOUSE WHEEL to change</h2>
+<h2>MOUSE CLICK to select or create</h2>
+        <a href="..">Go To Game (IN PROGRESS)</a>
+</footer>
+</body>
+<script src="editor.js"></script>
+</html>

@@ -1,6 +1,7 @@
 //ENVIROMENT
-var env_gravity = 0.5;
-var env_accell = 0;
+var env_gravity = 0.5; //0.5
+var env_accell_y = 0;
+var env_accell_x = 0;
 
 var env_speed_normal = 3;
 var env_speed_run = 5;
@@ -11,8 +12,8 @@ var leftHold = false;
 var rightHold = false;
 
 //PLAYER
-var xpos = 0;
-var ypos = 0;
+var xpos = 0; //0
+var ypos = 0; //0
 
 var xvector = 0;
 var yvector = 0;
@@ -30,6 +31,8 @@ var playerJumpheight = -15;
 var crouching = false;
 
 var running = false;
+
+var inAirNerf = 0.99;
 
 var player = document.getElementById("player");
 var playergraphic = document.getElementById("playergraphic");
@@ -65,18 +68,27 @@ const delay = (delayInms) => {
         HandleInput();
         gravity();
         collisionCheck();
+        if(xvector < -playerspeed) xvector = -playerspeed;
+        if(xvector > playerspeed) xvector = playerspeed;
         xpos += xvector;
         ypos += yvector;
+        ScrollScreen()
         yvector = 0;
-        xvector = 0;
         collisionCheck();
+        if(!grounded || crouching)
+        {
+            xvector *= inAirNerf;
+            // console.log("RESET " + (crouching ? "CROUCH" : ""))
+        }
+        else{
+            xvector = 0;
+        }
         RunAnimation()
 
         
         player.style.transform = "translate(" +xpos + "px ," + ypos + "px)";
         // console.log("translate(" +xpos + "px ," + ypos + "px)");
 
-        ScrollScreen()
 
         var delayres = await delay(timeout);
 
@@ -95,8 +107,8 @@ function mainLoopStop(){
 }
 
 function gravity(){
-    env_accell += env_gravity;
-    yvector += env_accell;
+    env_accell_y += env_gravity;
+    yvector += env_accell_y;
     // console.log("current gravity = " + env_gravity + " (" + yvector + ")");
 }
 
@@ -109,7 +121,7 @@ function collisionCheck(){
         //BOTTOM
         ypos = screenmaxheight - sizey;
         grounded = true;
-        env_accell = 0;
+        env_accell_y = 0;
     }
     if(xpos + sizex > screenmaxwidth) xpos = screenmaxwidth - sizex;
 
@@ -125,7 +137,7 @@ function collisionCheck(){
         //BOTTOM
         if(ypos < objposy + objsizey && xpos < objposx + objsizex - (0.1 * objsizex) && xpos + sizex > objposx + (0.1 * objsizex) && ypos > objposy + (vaultable ? (0.01 * objsizey) : 0)){
             if(yvector < 0) yvector = 0;
-            env_accell = 0;
+            env_accell_y = 0;
             ypos = objposy + objsizey;
         }
 
@@ -141,9 +153,9 @@ function collisionCheck(){
 
         //TOP
         if(ypos + sizey > objposy && xpos < objposx + objsizex && xpos + sizex > objposx && ypos < objposy + (vaultable ? (0.01 * objsizey) : 0)){
-            if(yvector > 0 || env_accell > 0) 
+            if(yvector > 0 || env_accell_y > 0) 
             {
-                env_accell = 0;
+                env_accell_y = 0;
                 yvector = 0;
             }
             ypos = objposy - sizey;
@@ -156,12 +168,12 @@ function collisionCheck(){
 
 function ScrollScreen(){
     if(xpos < scrollmargin + scrollValue){
-        scrollValue -= playerspeed;
+        scrollValue += xvector;
         xpos = scrollmargin + scrollValue;
         // console.log("SCROLLLEFT");
     }
     if(xpos + sizex > innerWidth + scrollValue - scrollmargin){
-        scrollValue += playerspeed;
+        scrollValue += xvector;
         xpos = innerWidth + scrollValue - scrollmargin - sizex;
         // console.log("SCROLLRIGHT");
     }
@@ -175,9 +187,11 @@ function ScrollScreen(){
 }
 
 function HandleInput(){
-    if(crouching) return;
-    if(rightHold) xvector += playerspeed;
-    if(leftHold) xvector -= playerspeed;
+    if(!crouching)
+    {
+        if(rightHold) xvector += playerspeed;
+        if(leftHold) xvector -= playerspeed;
+    }
 }
 
 function RunAnimation(){
@@ -219,6 +233,7 @@ function RunAnimation(){
 
     // console.log(sprite);
     playergraphic.style.background = "url(assets/"+sprite+".png)";
+    playergraphic.style.backgroundSize = "64px 64px";
     if(animSequence > 20) 
         animSequence = 1;
     else if(animSequence < 1) animSequence = 1;
@@ -248,7 +263,7 @@ function KeyCheckDown()
       case 38: //up
       if(grounded)
       {
-        env_accell = playerJumpheight;
+        env_accell_y = playerJumpheight;
       }
       break;
 
