@@ -5,48 +5,66 @@
         *{
             padding: 0;
             margin: 0;
+            font-family: Helvetica, sans-serif;
+        }
+        h2{
+            color: white;
+            padding: 10px 0;
+        }
+        body{
+            min-height: 500px;
+            height: 500px;
         }
         #player {
             position: absolute;
             width: 64px;
             height: 64px;
         }
+        #pausemenu button{
+            color: initial;
+        }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tea platformer</title>
+    <link rel="shortcut icon" href="assets/tea_idle_2.png" type="image/x-icon">
 </head>
-<body style="background: url(assets/backgroundpage.jpg); background-size: 210vh; background-repeat:repeat-x;">
-    <div id="pauseMenu" style="width: 100%; height: 100dvh; position: absolute; z-index: 11;">
-        <div id="pausemenubackground" style="background-color: black; opacity: 0.5; width: 100%; height: 100dvh;"></div>
-        <div style="z-index: 13; position: absolute; top: 40dvh; left: 20%;">
-            <h2>PAUZA</h2>
-            <button onclick="mainLoopStart()" style="padding: 20px 30px">Wznów</button>
+<body style="width: 100%; overflow-x: hidden;"><!-- Width change here -->
+    <div id="game" style="background: url(assets/backgroundpage.jpg); background-size: 576px 100%; background-repeat: repeat-x; height: 576px; width: 4096px; image-rendering: pixelated;"> <!-- Width change here -->
+        <div id="pauseMenu" style="width: 100%; height: 576px; position: absolute; z-index: 11;">
+            <div id="pausemenubackground" style="background-color: black; opacity: 0.5; width: 100%; height: 576px;"></div>
+            <div style="z-index: 13; position: absolute; top: 200px; left: 20%; background-color: gray; padding: 20px 20% 20px 5%">
+                <h2>PAUZA</h2>
+                <button onclick="mainLoopStart()" style="padding: 20px 30px">Wznów</button>
+            </div>
         </div>
-    </div>
-    <div id="player" style=" width: 64px; height: 64px">
-        <div id="playergraphic" style="background: url(assets/tea_idle_2.png); background-size: 100%;  width: 16px; height: 16px; margin: 24px; transform: scale(400%);"></div>
-    </div>
+        <div id="player" style=" width: 64px; height: 64px">
+            <div id="playergraphic" style="background: url(assets/tea_idle_2.png); background-size: 100%;  width: 16px; height: 16px; margin: 24px; transform: scale(400%); image-rendering: pixelated;"></div>
+        </div>
 
-    
-    <div class="enviroment" posx="128" posy="300" sizex="64" sizey="64" vaultable=0 style="position: absolute;">
-        <div style="background: url(assets/ground1.png); width: 64px; height: 64px; transform: translate(128px, 300px)"></div>
+        <div class="enviroment" posx="0" posy="448" sizex="4096" sizey="64" vaultable=0 style="position: absolute;">
+            <div style="background: url(assets/ground1.png); width: 4096px; height: 64px; transform: translate(0px, 448px); background-size: 64px 64px; image-rendering: pixelated;"></div>
+        </div>
+        <div class="enviroment" posx="0" posy="512" sizex="4096" sizey="64" vaultable=0 style="position: absolute;">
+            <div style="background: url(assets/ground1_2.png); width: 4096px; height: 64px; transform: translate(0px, 512px); background-size: 64px 64px; image-rendering: pixelated;"></div>
+        </div>
+</div>
+<div id="controls" style="position: absolute;">
+    <h3>Controls</h3>
+    <div style="display: flex;">
+        <div style="display: grid;">
+            <div style="image-rendering: pixelated; margin: -12px; height: 100px; width: 100px; grid-row-start: 0; grid-row-end: 1; grid-column-start: 1; grid-column-end: 2; background: url(assets/keyboardhints/up.png);"></div>
+            <div style="image-rendering: pixelated; margin: -12px; height: 100px; width: 100px; grid-row-start: 1; grid-row-end: 2; grid-column-start: 0; grid-column-end: 1; background: url(assets/keyboardhints/left.png);"></div>
+            <div style="image-rendering: pixelated; margin: -12px; height: 100px; width: 100px; grid-row-start: 1; grid-row-end: 2; grid-column-start: 1; grid-column-end: 2; background: url(assets/keyboardhints/down.png);"></div>
+            <div style="image-rendering: pixelated; margin: -12px; height: 100px; width: 100px; grid-row-start: 1; grid-row-end: 2; grid-column-start: 2; grid-column-end: 3; background: url(assets/keyboardhints/right.png);"></div>
+        </div>
+        <h4>Movement</h4>
+        <div>
+            <div style="image-rendering: pixelated; height: 100px; width: 100px; grid-row-start: 0; grid-row-end: 1; grid-column-start: 1; grid-column-end: 2; background: url(assets/keyboardhints/shift.png);"></div>
+        </div>
+        <h4>Running</h4>
     </div>
-    
-    <div class="enviroment" posx="0" posy="364" sizex="64" sizey="64" vaultable=0 style="position: absolute;">
-        <div style="background: url(assets/ground1.png); width: 64px; height: 64px; transform: translate(0px, 364px)"></div>
-    </div>
-    <div class="enviroment" posx="64" posy="364" sizex="64" sizey="64" vaultable=0 style="position: absolute;">
-        <div style="background: url(assets/ground1.png); width: 64px; height: 64px; transform: translate(64px, 364px)"></div>
-    </div>
-
-    <div class="enviroment" posx="192" posy="364" sizex="64" sizey="64" vaultable=0 style="position: absolute;">
-        <div style="background: url(assets/ground1.png); width: 64px; height: 64px; transform: translate(192px, 364px)"></div>
-    </div>
-    <div class="enviroment" posx="240" posy="364" sizex="64" sizey="64" vaultable=0 style="position: absolute;">
-        <div style="background: url(assets/ground1.png); width: 64px; height: 64px; transform: translate(240px, 364px)"></div>
-    </div>
-    
+</div>
 </body>
 <script src="main.js"></script>
 </html>
