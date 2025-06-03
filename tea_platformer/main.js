@@ -59,6 +59,62 @@ var screenmaxheight = 576;
 
 document.onkeyup = KeyCheckUp;
 document.onkeydown = KeyCheckDown;
+function setup(){
+    //ENVIROMENT
+    env_gravity = 0.5; //0.5
+    env_accell_y = 0;
+    env_accell_x = 0;
+
+    env_speed_normal = 3;
+    env_speed_run = 5;
+
+    grounded = false;
+
+    leftHold = false;
+    rightHold = false;
+
+    //PLAYER
+    xpos = 0; //0
+    ypos = 0; //0
+
+    xvector = 0;
+    yvector = 0;
+
+    sizex = 64;
+    sizey = 64;
+
+    doLoop = true;
+
+    timeout = 10;
+
+    playerspeed = 3;
+    playerJumpheight = -15;
+
+    crouching = false;
+
+    running = false;
+
+    inAirNerf = 0.99;
+
+    objects = document.getElementsByClassName("enviroment");
+
+    //ANIMATION SEQUENCE
+    animSequence = 1;
+    faviconAnimSequence = 1;
+
+    //AUTO SCROLLING
+
+    scrollmargin = 5;
+
+    scrollValue = 0;
+
+    //SCREEN SIZE
+
+    screenmaxwidth = 4096;
+    screenmaxheight = 576;
+}
+
+// setup();
 
 const delay = (delayInms) => {
         return new Promise(resolve => setTimeout(resolve, delayInms));

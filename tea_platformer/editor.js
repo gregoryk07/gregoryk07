@@ -6,6 +6,9 @@ var cursoroffsetx = 32;
 var cursorPosx = 0;
 var cursorPosy = 0;
 
+var realCursorPosY = 0;
+var realCursorPosX = 0;
+
 var screensizex = 4096;
 var screensizey = 576;
 var selectedObject = -1;
@@ -17,6 +20,24 @@ var objList = ["ground1", "ground1_2", "ground2"];
 var cursorSprite = document.getElementById("cursorSprite");
 
 var objParent = document.getElementById("enviromentContainer");
+
+var mapCode = "";
+
+function setup(){
+    var game = document.getElementById("game");
+
+    var xsizeinput = document.getElementById("xsizeinput");
+    var ysizeinput = document.getElementById("ysizeinput");
+
+    screensizex = xsizeinput.value;
+    screensizey = ysizeinput.value;
+
+    game.style.backgroundSize = screensizey + "px 100%";
+    game.style.width = screensizex + "px";
+    game.style.height = screensizey + "px";
+}
+
+setup();
 
 
 
@@ -38,7 +59,10 @@ addEventListener("wheel", (event) => {
 addEventListener("mousemove", (event) => {
     cursorPosx = (event.pageX - (snap ? event.pageX%64 : cursoroffsetx));
     cursorPosy = (event.pageY - (snap ? event.pageY%64 : cursoroffsety));
+    realCursorPosY = event.pageY;
+    realCursorPosX = event.pageX;
     if(cursorPosy + 64 > screensizey) cursorPosy = screensizey - 64;
+    if(cursorPosx + 64 > screensizex) cursorPosx = screensizex - 64;
     cursorSprite.style.transform = "translate("+ cursorPosx + "px, " + cursorPosy + "px)";
     document.getElementById("footerDiv").style.transform = "translate("+scrollX +"px, 0px)";
 });
@@ -49,6 +73,8 @@ addEventListener("click", (event) => {
     var hovered = false;
     for(var i = 0; i < editorObjects.length; i++)
     {
+
+        if(realCursorPosY > screensizey || realCursorPosX > screensizex) continue;
 
         editorObjects[i].style.boxShadow = "";
         editorObjects[i].style.zIndex = "initial";
@@ -73,7 +99,7 @@ addEventListener("click", (event) => {
             selectedObject = i;
         }
     }
-    if(!hovered){
+    if(!hovered && realCursorPosY <= screensizey){
         selectedObject = -1;
         // console.log("NOTFOUND");
         var newObject = document.createElement("div");
@@ -82,6 +108,7 @@ addEventListener("click", (event) => {
         newObject.setAttribute("posy", cursorPosy);
         newObject.setAttribute("sizex", "64");
         newObject.setAttribute("sizey", "64");
+        newObject.setAttribute("vaultable", "0");
         newObject.style.background = "url(assets/"+objList[selectedIndex]+".png)";
         newObject.style.width = "64px";
         newObject.style.height = "64px";
@@ -92,6 +119,15 @@ addEventListener("click", (event) => {
         document.getElementById("game").appendChild(newObject);
     }
 });
+
+function disselectCurrent(){
+    for(var i = 0; i < editorObjects.length; i++)
+    {
+        editorObjects[i].style.boxShadow = "";
+        editorObjects[i].style.zIndex = "initial";
+    }
+    selectedObject = -1;
+}
 
 function KeyCheckDown()
 {
@@ -104,6 +140,9 @@ function KeyCheckDown()
             break;
         case 46: //delete
             deleteSelected();
+            break;
+        case 27: //esc
+            disselectCurrent();
             break;
      }
 }
@@ -125,8 +164,92 @@ function deleteSelected(){
     editorObjects[selectedObject].remove();
 
     editorObjects = document.getElementsByClassName("enviroment");
+
+    disselectCurrent();
 }
 
 
 document.onkeyup = KeyCheckUp;
 document.onkeydown = KeyCheckDown;
+
+
+function exportMap(){
+    editorObjects = document.getElementsByClassName("enviroment");
+
+    var part1 = screensizex + "x" + screensizey;
+
+
+
+
+
+    var part2 = "";
+
+    for(var i = 0; i < editorObjects.length; i++)
+    {
+        var spritePath = String(editorObjects[i].style.background).split("\"")[1];
+
+        part2 += editorObjects[i].getAttribute("posx") + "$" + 
+        editorObjects[i].getAttribute("posy") + "$" + 
+        editorObjects[i].getAttribute("sizex") + "$" + 
+        editorObjects[i].getAttribute("sizey") + "$" + 
+        editorObjects[i].getAttribute("vaultable") + "$" + 
+        spritePath;
+
+        if(i + 1 < editorObjects.length) part2 += "&";
+    }
+
+    var fullPart = part1 + "???" + part2;
+
+    document.getElementById("mapcodetextarea").value = fullPart;
+}
+
+function importMap(){
+    editorObjects = document.getElementsByClassName("enviroment");
+    
+    for(var i = 0; i < editorObjects.length; i++)
+    {
+        editorObjects[i].remove();
+    }
+
+    
+    var fullpart = String(document.getElementById("mapcodetextarea").value);
+
+    var part1 = fullpart.split("???")[0];
+
+    var part2 = fullpart.split("???")[1];
+
+
+    document.getElementById("xsizeinput").value = Number(part1.split("x")[0]);
+
+    document.getElementById("ysizeinput").value = Number(part1.split("x")[1]);
+    setup();
+
+    var partedpart2 = part2.split("&");
+    for(var i = 0; i < partedpart2.length; i++){
+        var posx = partedpart2[i].split("$")[0];
+        var posy = partedpart2[i].split("$")[1];
+        var sizex = partedpart2[i].split("$")[2];
+        var sizey = partedpart2[i].split("$")[3];
+        var vaultable = partedpart2[i].split("$")[4]
+        var sprite = partedpart2[i].split("$")[5];
+
+
+        selectedObject = -1;
+        // console.log("NOTFOUND");
+        var newObject = document.createElement("div");
+        newObject.className = "enviroment";
+        newObject.setAttribute("posx", posx);
+        newObject.setAttribute("posy", posy);
+        newObject.setAttribute("sizex", sizex);
+        newObject.setAttribute("sizey", sizey);
+        newObject.setAttribute("vaultable", vaultable);
+        newObject.style.background = "url("+sprite+")";
+        newObject.style.width = sizex + "px";
+        newObject.style.height = sizey + "px";
+        newObject.style.transform = "translate("+posx+"px, " + posy + "px)";
+        newObject.style.backgroundSize = "64px 64px";
+        newObject.style.imageRendering = "pixelated"
+        newObject.style.position = "absolute";
+        document.getElementById("game").appendChild(newObject);
+    }
+}
