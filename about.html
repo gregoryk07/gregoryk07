@@ -21,13 +21,16 @@
                         About me
                     </h1>
                     <p>
-                        I'm an 17 year old student who goes to middle school. I really like programing. I was making "game-things" for about two years.
+                        I'm an 18 year old student who goes to high school. I really like programing. I was making "game-things" for about two years.
                     </p>
                 </article>
             </div>
             <footer>
                 <hr>
-                &copy; Copyright gregoryk07 2024<br>
+                &copy; Copyright gregoryk07 <span id="copyrightYear"></span><br>
+                <script>
+                    document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+                </script>
                 <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
             </footer>
         </div>

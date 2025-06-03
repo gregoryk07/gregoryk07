@@ -29,7 +29,7 @@
                         <h2>About games</h2>
                     </header>
                     <p>
-                    They're made by an 17 year old so you definitely shouldn't expect much quality from them as they're just either small or way too much ambitious.
+                    They're made by an 18 year old so you definitely shouldn't expect much quality from them as they're just either small or way too much ambitious.
                     </p>
                 </article>
                 <article>
@@ -49,7 +49,10 @@
             </div>
             <footer>
                 <hr>
-                &copy; Copyright gregoryk07 2024<br>
+                &copy; Copyright gregoryk07 <span id="copyrightYear"></span><br>
+                <script>
+                    document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+                </script>
                 <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
             </footer>
         </div>
