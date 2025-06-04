@@ -15,11 +15,6 @@
             min-height: 500px;
             height: 500px;
         }
-        #player {
-            position: absolute;
-            width: 64px;
-            height: 64px;
-        }
         #pausemenu button{
             color: initial;
         }
@@ -38,15 +33,8 @@
                 <button onclick="mainLoopStart()" style="padding: 20px 30px">Wznów</button>
             </div>
         </div>
-        <div id="player" style=" width: 64px; height: 64px">
-            <div id="playergraphic" style="background: url(assets/tea_idle_2.png); background-size: 100%;  width: 64px; height: 64px; image-rendering: pixelated;"></div>
-        </div>
-
-        <div class="enviroment" posx="0" posy="448" sizex="4096" sizey="64" vaultable=0 style="position: absolute;">
-            <div style="background: url(assets/ground1.png); width: 4096px; height: 64px; transform: translate(0px, 448px); background-size: 64px 64px; image-rendering: pixelated;"></div>
-        </div>
-        <div class="enviroment" posx="0" posy="512" sizex="4096" sizey="64" vaultable=0 style="position: absolute;">
-            <div style="background: url(assets/ground1_2.png); width: 4096px; height: 64px; transform: translate(0px, 512px); background-size: 64px 64px; image-rendering: pixelated;"></div>
+        <div id="player" style=" width: 48px; height: 48px; position: absolute">
+            <div id="playergraphic" style="background: url(assets/tea_idle_2.png); background-size: 48px 48px;  width: 48px; height: 48px; image-rendering: pixelated;"></div>
         </div>
 </div>
 <div id="controls" style="position: absolute;">
@@ -63,7 +51,12 @@
             <div style="image-rendering: pixelated; height: 100px; width: 100px; grid-row-start: 0; grid-row-end: 1; grid-column-start: 1; grid-column-end: 2; background: url(assets/keyboardhints/shift.png);"></div>
         </div>
         <h4>Running</h4>
+        <div>
+            <button onclick="importMap()">Import map</button>
+            <textarea id="mapcodetextarea" placeholder="Map code here"></textarea>
+        </div>
         <a href="editor.html">Go To Editor (IN PROGRESS)</a>
+        <button onclick="editLevel()">Edit this level</button>
     </div>
 </div>
 </body>

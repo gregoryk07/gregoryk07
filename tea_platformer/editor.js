@@ -37,6 +37,13 @@ function setup(){
     game.style.height = screensizey + "px";
 }
 
+var prop_asset = document.getElementById("properties_asset");
+var prop_posx = document.getElementById("properties_posx");
+var prop_posy = document.getElementById("properties_posy");
+var prop_sizex = document.getElementById("properties_sizex");
+var prop_sizey = document.getElementById("properties_sizey");
+var prop_vaultable = document.getElementById("properties_vaultable");
+
 setup();
 
 
@@ -117,8 +124,50 @@ addEventListener("click", (event) => {
         newObject.style.imageRendering = "pixelated"
         newObject.style.position = "absolute";
         document.getElementById("game").appendChild(newObject);
+        
     }
+    if(realCursorPosY <= screensizey){
+        if(selectedObject >= 0)
+        {
+            prop_asset.value = String(editorObjects[selectedObject].style.background).split("\"")[1];;
+
+            prop_posx.value = editorObjects[selectedObject].getAttribute("posx");
+            prop_posy.value = editorObjects[selectedObject].getAttribute("posy");
+            prop_sizex.value = editorObjects[selectedObject].getAttribute("sizex");
+            prop_sizey.value = editorObjects[selectedObject].getAttribute("sizey");
+            prop_vaultable.value = editorObjects[selectedObject].getAttribute("vaultable");
+        }
+        else
+        {
+            prop_asset.value = "";
+            prop_posx.value = "";
+            prop_posy.value = "";
+            prop_sizex.value = "";
+            prop_sizey.value = "";
+            prop_vaultable.value = "";
+        }
+    }
+
+
+    
 });
+
+function setProperties(){
+    if(selectedObject >= 0){
+        editorObjects[selectedObject].style.background = "url("+prop_asset.value+")";
+        editorObjects[selectedObject].style.width = prop_sizex.value + "px"
+        editorObjects[selectedObject].style.height = prop_sizey.value + "px";
+        editorObjects[selectedObject].style.transform = "translate("+prop_posx.value+"px, " + prop_posy.value + "px)";
+        editorObjects[selectedObject].style.backgroundSize = "64px 64px";
+
+
+        editorObjects[selectedObject].setAttribute("posx", prop_posx.value);
+        editorObjects[selectedObject].setAttribute("posy", prop_posy.value);
+        editorObjects[selectedObject].setAttribute("sizex", prop_sizex.value);
+        editorObjects[selectedObject].setAttribute("sizey", prop_sizey.value);
+        editorObjects[selectedObject].setAttribute("vaultable", prop_vaultable.value);
+    }
+}
 
 function disselectCurrent(){
     for(var i = 0; i < editorObjects.length; i++)
@@ -127,6 +176,13 @@ function disselectCurrent(){
         editorObjects[i].style.zIndex = "initial";
     }
     selectedObject = -1;
+
+        prop_asset.value = "";
+        prop_posx.value = "";
+        prop_posy.value = "";
+        prop_sizex.value = "";
+        prop_sizey.value = "";
+        prop_vaultable.value = "";
 }
 
 function KeyCheckDown()
@@ -253,3 +309,27 @@ function importMap(){
         document.getElementById("game").appendChild(newObject);
     }
 }
+
+function testLevel(){
+    exportMap();
+
+    location.replace("index.html?" + String(document.getElementById("mapcodetextarea").value));
+
+    // location.pathname = desiredLink;
+    console.log(desiredLink);
+    // location.search = "?" + String(document.getElementById("mapcodetextarea").value);
+    console.log("?" + String(document.getElementById("mapcodetextarea").value));
+
+}
+
+if(location.search > 1)
+    {
+    document.getElementById("mapcodetextarea").value = location.search;
+
+    document.getElementById("mapcodetextarea").value = String(document.getElementById("mapcodetextarea").value).substring(1);
+    
+    }
+    else{
+        document.getElementById("mapcodetextarea").value = "2048x576???0$448$896$64$0$assets/ground1.png&0$512$896$64$0$assets/ground1_2.png&1024$0$64$320$0$assets/ground2.png&1088$128$64$64$0$assets/ground2.png&1152$0$64$320$0$assets/ground2.png&1280$128$64$192$0$assets/ground2.png&1280$0$64$64$0$assets/ground2.png&1472$256$64$64$0$assets/ground2.png&1472$0$64$192$0$assets/ground2.png&896$512$768$64$0$assets/ground1.png&1664$448$384$64$0$assets/ground1.png&1664$512$384$64$0$assets/ground1_2.png&512$128$64$64$0$assets/ground2.png&640$128$64$64$0$assets/ground2.png&704$128$64$64$0$assets/ground2.png&448$256$64$64$0$assets/ground2.png&512$256$64$64$0$assets/ground2.png&576$256$64$64$0$assets/ground2.png&640$256$64$64$0$assets/ground2.png&704$256$64$64$0$assets/ground2.png&768$256$64$64$0$assets/ground2.png";
+    }
+    importMap();

@@ -18,8 +18,8 @@ var ypos = 0; //0
 var xvector = 0;
 var yvector = 0;
 
-var sizex = 64;
-var sizey = 64;
+var sizex = 48;
+var sizey = 48;
 
 var doLoop = true;
 
@@ -80,8 +80,8 @@ function setup(){
     xvector = 0;
     yvector = 0;
 
-    sizex = 64;
-    sizey = 64;
+    sizex = 48;
+    sizey = 48;
 
     doLoop = true;
 
@@ -198,12 +198,12 @@ function collisionCheck(){
         }
 
         //LEFT
-        if(xpos + sizex > objposx && xpos < objposx + (0.5 * objsizex) && ypos > objposy && ypos < objposy + objsizey){
+        if(xpos + sizex > objposx && xpos + sizex < objposx + (0.5 * objsizex) && ypos >= objposy && ypos < objposy + objsizey){
             xpos = objposx - sizex;
         }
 
         //RIGHT
-        if(xpos < objposx + objsizex && xpos > objposx + (0.5 * objsizex) && ypos > objposy && ypos < objposy + objsizey){
+        if(xpos < objposx + objsizex && xpos > objposx + (0.5 * objsizex) && ypos >= objposy && ypos < objposy + objsizey){
             xpos = objposx + objsizex;
         }
 
@@ -289,7 +289,7 @@ function RunAnimation(){
 
     // console.log(sprite);
     playergraphic.style.background = "url(assets/"+sprite+".png)";
-    playergraphic.style.backgroundSize = "64px 64px";
+    playergraphic.style.backgroundSize = sizex + "px, " + sizey +"px";
     if(animSequence > 20) 
         animSequence = 1;
     else if(animSequence < 1) animSequence = 1;
@@ -375,9 +375,9 @@ document.getElementById("pauseMenu").style.display = "none";
 mainLoopStart();
 
 function exportMap(){
-    editorObjects = document.getElementsByClassName("enviroment");
+    objects = document.getElementsByClassName("enviroment");
 
-    var part1 = screensizex + "x" + screensizey;
+    var part1 = screenmaxwidth + "x" + screenmaxheight;
 
 
 
@@ -385,18 +385,18 @@ function exportMap(){
 
     var part2 = "";
 
-    for(var i = 0; i < editorObjects.length; i++)
+    for(var i = 0; i < objects.length; i++)
     {
-        var spritePath = String(editorObjects[i].style.background).split("\"")[1];
+        var spritePath = String(objects[i].style.background).split("\"")[1];
 
-        part2 += editorObjects[i].getAttribute("posx") + "$" + 
-        editorObjects[i].getAttribute("posy") + "$" + 
-        editorObjects[i].getAttribute("sizex") + "$" + 
-        editorObjects[i].getAttribute("sizey") + "$" + 
-        editorObjects[i].getAttribute("vaultable") + "$" + 
+        part2 += objects[i].getAttribute("posx") + "$" + 
+        objects[i].getAttribute("posy") + "$" + 
+        objects[i].getAttribute("sizex") + "$" + 
+        objects[i].getAttribute("sizey") + "$" + 
+        objects[i].getAttribute("vaultable") + "$" + 
         spritePath;
 
-        if(i + 1 < editorObjects.length) part2 += "&";
+        if(i + 1 < objects.length) part2 += "&";
     }
 
     var fullPart = part1 + "???" + part2;
@@ -405,25 +405,27 @@ function exportMap(){
 }
 
 function importMap(){
-    editorObjects = document.getElementsByClassName("enviroment");
+    objects = document.getElementsByClassName("enviroment");
     
-    for(var i = 0; i < editorObjects.length; i++)
+    for(var i = 0; i < objects.length; i++)
     {
-        editorObjects[i].remove();
+        objects[i].remove();
     }
 
     
     var fullpart = String(document.getElementById("mapcodetextarea").value);
 
     var part1 = fullpart.split("???")[0];
+    
+    
 
     var part2 = fullpart.split("???")[1];
 
 
-    document.getElementById("xsizeinput").value = Number(part1.split("x")[0]);
+    // document.getElementById("xsizeinput").value = Number(part1.split("x")[0]);
 
-    document.getElementById("ysizeinput").value = Number(part1.split("x")[1]);
-    setup();
+    // document.getElementById("ysizeinput").value = Number(part1.split("x")[1]);
+    
 
     var partedpart2 = part2.split("&");
     for(var i = 0; i < partedpart2.length; i++){
@@ -453,4 +455,39 @@ function importMap(){
         newObject.style.position = "absolute";
         document.getElementById("game").appendChild(newObject);
     }
+
+    setup();
+    var game = document.getElementById("game");
+
+    screenmaxwidth = part1.split("x")[0];
+    screenmaxheight = part1.split("x")[1];
+
+    game.style.backgroundSize = screenmaxheight + "px 100%";
+    game.style.width = screenmaxwidth + "px";
+    game.style.height = screenmaxheight + "px";
+}
+
+
+    if(location.search > 1)
+    {
+    document.getElementById("mapcodetextarea").value = location.search;
+
+    document.getElementById("mapcodetextarea").value = String(document.getElementById("mapcodetextarea").value).substring(1);
+    
+    }
+    else{
+        document.getElementById("mapcodetextarea").value = "2048x576???0$448$896$64$0$assets/ground1.png&0$512$896$64$0$assets/ground1_2.png&1024$0$64$320$0$assets/ground2.png&1088$128$64$64$0$assets/ground2.png&1152$0$64$320$0$assets/ground2.png&1280$128$64$192$0$assets/ground2.png&1280$0$64$64$0$assets/ground2.png&1472$256$64$64$0$assets/ground2.png&1472$0$64$192$0$assets/ground2.png&896$512$768$64$0$assets/ground1.png&1664$448$384$64$0$assets/ground1.png&1664$512$384$64$0$assets/ground1_2.png&512$128$64$64$0$assets/ground2.png&640$128$64$64$0$assets/ground2.png&704$128$64$64$0$assets/ground2.png&448$256$64$64$0$assets/ground2.png&512$256$64$64$0$assets/ground2.png&576$256$64$64$0$assets/ground2.png&640$256$64$64$0$assets/ground2.png&704$256$64$64$0$assets/ground2.png&768$256$64$64$0$assets/ground2.png";
+    }
+    importMap();
+
+function editLevel(){
+    exportMap();
+
+    location.replace("editor.html?" + String(document.getElementById("mapcodetextarea").value));
+
+    // location.pathname = desiredLink;
+    console.log(desiredLink);
+    // location.search = "?" + String(document.getElementById("mapcodetextarea").value);
+    console.log("?" + String(document.getElementById("mapcodetextarea").value));
+
 }
