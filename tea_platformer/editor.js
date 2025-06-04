@@ -322,7 +322,7 @@ function testLevel(){
 
 }
 
-if(location.search > 1)
+if(location.search.length > 1)
     {
     document.getElementById("mapcodetextarea").value = location.search;
 

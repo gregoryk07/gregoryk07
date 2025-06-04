@@ -2,6 +2,7 @@
 var env_gravity = 0.5; //0.5
 var env_accell_y = 0;
 var env_accell_x = 0;
+var env_vaultheight = 0.5;
 
 var env_speed_normal = 3;
 var env_speed_run = 5;
@@ -18,15 +19,16 @@ var ypos = 0; //0
 var xvector = 0;
 var yvector = 0;
 
-var sizex = 48;
-var sizey = 48;
+var sizex = 40;
+var sizey = 40;
+
 
 var doLoop = true;
 
 var timeout = 10;
 
 var playerspeed = 3;
-var playerJumpheight = -15;
+var playerJumpheight = -12;
 
 var crouching = false;
 
@@ -64,6 +66,7 @@ function setup(){
     env_gravity = 0.5; //0.5
     env_accell_y = 0;
     env_accell_x = 0;
+    env_vaultheight = 0.5;
 
     env_speed_normal = 3;
     env_speed_run = 5;
@@ -80,8 +83,8 @@ function setup(){
     xvector = 0;
     yvector = 0;
 
-    sizex = 48;
-    sizey = 48;
+    sizex = 32;
+    sizey = 32;
 
     doLoop = true;
 
@@ -191,7 +194,7 @@ function collisionCheck(){
         var vaultable = Boolean(Number(objects[i].getAttribute("vaultable")));
         
         //BOTTOM
-        if(ypos < objposy + objsizey && xpos < objposx + objsizex - (0.1 * objsizex) && xpos + sizex > objposx + (0.1 * objsizex) && ypos > objposy + (vaultable ? (0.01 * objsizey) : 0)){
+        if(ypos < objposy + objsizey && xpos < objposx + objsizex - (0.1 * objsizex) && xpos + sizex > objposx + (0.1 * objsizex) && ypos > objposy + (vaultable ? (env_vaultheight * objsizey) : 0)){
             if(yvector < 0) yvector = 0;
             env_accell_y = 0;
             ypos = objposy + objsizey;
@@ -200,15 +203,23 @@ function collisionCheck(){
         //LEFT
         if(xpos + sizex > objposx && xpos + sizex < objposx + (0.5 * objsizex) && ypos >= objposy && ypos < objposy + objsizey){
             xpos = objposx - sizex;
+            if(vaultable){
+                ypos = objposy - sizey;
+            }
+            // console.log("LEFT");
         }
 
         //RIGHT
         if(xpos < objposx + objsizex && xpos > objposx + (0.5 * objsizex) && ypos >= objposy && ypos < objposy + objsizey){
             xpos = objposx + objsizex;
+            if(vaultable){
+                ypos = objposy - sizey;
+            }
+            // console.log("RIGHT");
         }
 
         //TOP
-        if(ypos + sizey > objposy && xpos < objposx + objsizex && xpos + sizex > objposx && ypos < objposy + (vaultable ? (0.01 * objsizey) : 0)){
+        if(ypos + sizey > objposy && xpos < objposx + objsizex && xpos + sizex > objposx && ypos < objposy + (vaultable ? (env_vaultheight * objsizey) : 0)){
             if(yvector > 0 || env_accell_y > 0) 
             {
                 env_accell_y = 0;
@@ -289,7 +300,11 @@ function RunAnimation(){
 
     // console.log(sprite);
     playergraphic.style.background = "url(assets/"+sprite+".png)";
-    playergraphic.style.backgroundSize = sizex + "px, " + sizey +"px";
+    playergraphic.style.backgroundSize = sizex + "px " + sizey +"px";
+    player.style.width = sizex + "px";
+    player.style.height = sizey + "px";
+    playergraphic.style.width = sizex + "px";
+    playergraphic.style.height = sizey + "px";
     if(animSequence > 20) 
         animSequence = 1;
     else if(animSequence < 1) animSequence = 1;
@@ -468,7 +483,7 @@ function importMap(){
 }
 
 
-    if(location.search > 1)
+    if(location.search.length > 1)
     {
     document.getElementById("mapcodetextarea").value = location.search;
 
