@@ -259,10 +259,23 @@ function exportMap(){
     document.getElementById("mapcodetextarea").value = fullPart;
 }
 
-function importMap(){
+function removeAll(){
     editorObjects = document.getElementsByClassName("enviroment");
     
-    for(var i = 0; i < editorObjects.length; i++)
+    for(var i = editorObjects.length -1; i >= 0; i--)
+    {
+        editorObjects[i].remove();
+    }
+}
+
+function importMap(){
+
+    
+    if(String(document.getElementById("mapcodetextarea").value).length == 0) return;
+
+    editorObjects = document.getElementsByClassName("enviroment");
+    
+    for(var i = editorObjects.length -1; i >= 0; i--)
     {
         editorObjects[i].remove();
     }

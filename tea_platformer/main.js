@@ -420,6 +420,10 @@ function exportMap(){
 }
 
 function importMap(){
+
+
+    if(String(document.getElementById("mapcodetextarea").value).length == 0) return;
+
     objects = document.getElementsByClassName("enviroment");
     
     for(var i = 0; i < objects.length; i++)
