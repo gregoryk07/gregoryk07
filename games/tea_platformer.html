@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREGORYK07</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
+    <script src="../script.js"></script>
+    <link rel="stylesheet" href="gamegridstyle.css">
+</head>
+<body>
+    <div id="panel" style="display: none">
+    <div id="panelw">
+        <h1>POG Launcher has been launched</h1>
+        <p>If it didn't launch, it probably isn't updated to the latest version or you don't have it installed.</p>
+        <button onclick="hidePopup()" class="lbutton">OK</button><br><br><a target="_blank" href="https://github.com/gregoryk07/POGLauncher/releases/tag/POGLauncher"><button class="lbutton">Download POGLauncher</button></a>
+    </div>
+    <div id="panelo" style="display: none">
+        <h1>Uh oh!</h1>
+        <p>POG Launcher along with all this game here is supported on Windows only. Visit this page on your Windows PC instead.</p>
+        <a><button onclick="hidePopup()" class="lbutton">OK</button></a>
+    </div>
+    </div>
+    <input type="checkbox" id="toggler">
+    <div id="front">
+        <div id="main">
+            <nav id="nav"><a href="../index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="../menuico.png" height="20px" width="20px"></label><ul>
+                <a href="../games.html"><li>GAMES</li></a>
+                <a href="../about.html"><li>ABOUT</li></a>
+                <a href="../tools.html"><li>TOOLS</li></a>
+            </ul></nav>
+            <div id="scrollview">
+                <div id="grid">
+                    <article id="grid-name">
+                        <h2>Tea Platformer</h2>
+                    </article>
+                    <article id="grid-photos">
+                        <img src="../tea_platformer/assets/tea_idle_1.png" style="image-rendering: pixelated;" width="100%">
+                    </article>
+                    <article id="grid-description">
+                        A simple platformer with level editor.
+                    </article>
+                    <article id="grid-links">
+                        <a href="../tea_platformer/index.html"><button class="lbutton">Play in web browser!</button></a>
+                        <!-- <a onclick="showPopup()" href="pog://game3"><button class="lbutton">DOWNLOAD via POG Launcher</button></a> -->
+                    </article>
+               
+                </div>
+            </div>
+            <footer>
+                <hr>
+                &copy; Copyright gregoryk07 <span id="copyrightYear"></span><br>
+                <script>
+                    document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+                </script>
+                <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
+            </footer>
+        </div>
+    </div>
+</body>
+<script src="../scriptafter.js"></script>
+</html>
