@@ -1,20 +1,40 @@
+#gamecard{
+    display: flex;
+}
+#gamecard > h2{
+    font-size: 30px;
+    width: 215px;
+    margin: 8px 10px;
+}
+#gamecard > img{
+    width: 50px;
+    height: 50px;
+    image-rendering: pixelated;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+#gamecard > a{
+    width: 80px;
+    height: 17px;
+    display: block;
+    text-align: center;
+    padding: 16.5px 0;
+    background-color: rgb(50, 50, 50);
+    margin-left: calc(100% - 50px - 20px - 80px - 215px);
+    border-radius: 10px;
+}
+
+
+
 @media screen and (max-width: 759px)
 {
-    #gamelist article{
-        display: flex;
-        flex-direction: row;
+    #gamecard > a{
+        width: 60px;
+        margin-left: calc(100% - 50px - 20px - 60px - 215px);
     }
-    #gamelist a{
-        display: block;
-        background-color: rgba(150, 150, 150, 0.5);
-        width: calc(68.131px);
-        padding: 32px 20px;
-        text-decoration: none;
-        border-radius: 10px;
-        text-align: center;
-    }
-    #gamelist div{
-        padding: 0 5px;
-        width: calc(100% - 40px - 68.131px - 10px);
+    #gamecard > h2{
+        font-size: 23px;
+        margin: 11.5px 10px;
     }
 }
