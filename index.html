@@ -29,7 +29,7 @@
                         <h2>About games</h2>
                     </header>
                     <p>
-                    They're made by an 18 year old so you definitely shouldn't expect much quality from them as they're just either small or way too much ambitious.
+                    They're made by an <span id="age">18</span> year old so you definitely shouldn't expect much quality from them as they're just either small or way too much ambitious.
                     </p>
                 </article>
                 <article>
@@ -52,6 +52,13 @@
                 &copy; Copyright gregoryk07 <span id="copyrightYear"></span><br>
                 <script>
                     document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+                    function diff_years(dt2, dt1)
+                    {
+                        var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+                        diff /= (60 * 60 * 24);
+                        return Math.abs(Math.round(diff/365.25));
+                    }
+                    document.getElementById("age").innerText = diff_years(new Date(), new Date(2007, 0, 5, 12, 0, 0, 0));
                 </script>
                 <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
             </footer>

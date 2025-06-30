@@ -21,7 +21,7 @@
                         About me
                     </h1>
                     <p>
-                        I'm an 18 year old student who goes to high school. I really like programing. I was making "game-things" for about two years.
+                        I'm an <span id="age">18</span> year old student who goes to high school (Until June 2027). I really like programing. I was making "game-things" for about <span id="gameage">four</span> years.
                     </p>
                 </article>
             </div>
@@ -29,7 +29,51 @@
                 <hr>
                 &copy; Copyright gregoryk07 <span id="copyrightYear"></span><br>
                 <script>
-                    document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+                    document.getElementById("copyrightYear").innerText = new Date().getFullYear();function diff_years(dt2, dt1)
+                    {
+                        var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+                        diff /= (60 * 60 * 24);
+                        return Math.abs(Math.round(diff/365.25));
+                    }
+                    document.getElementById("age").innerText = diff_years(new Date(), new Date(2007, 0, 5, 12, 0, 0, 0));
+                    function numberToWord(n) {
+                        if (n < 0)
+                            return false;
+                        
+                        // Arrays to hold words for single-digit, double-digit, and below-hundred numbers
+                        single_digit = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine']
+                        double_digit = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen']
+                        below_hundred = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']
+                        
+                        if (n === 0) return 'Zero';
+                        
+                        // Recursive function to translate the number into words
+                        function translate(n) {
+                            let word = "";
+                            if (n < 10) {
+                                word = single_digit[n] + ' ';
+                            } else if (n < 20) {
+                                word = double_digit[n - 10] + ' ';
+                            } else if (n < 100) {
+                                let rem = translate(n % 10);
+                                word = below_hundred[(n - n % 10) / 10 - 2] + ' ' + rem;
+                            } else if (n < 1000) {
+                                word = single_digit[Math.trunc(n / 100)] + ' Hundred ' + translate(n % 100);
+                            } else if (n < 1000000) {
+                                word = translate(parseInt(n / 1000)).trim() + ' Thousand ' + translate(n % 1000);
+                            } else if (n < 1000000000) {
+                                word = translate(parseInt(n / 1000000)).trim() + ' Million ' + translate(n % 1000000);
+                            } else {
+                                word = translate(parseInt(n / 1000000000)).trim() + ' Billion ' + translate(n % 1000000000);
+                            }
+                            return word;
+                        }
+                        
+                        // Get the result by translating the given number
+                        let result = translate(n);
+                        return result.trim();
+                    }
+                    document.getElementById("gameage").innerText = numberToWord(diff_years(new Date(), new Date(2020, 10, 17, 12, 0, 0, 0))).toLowerCase();
                 </script>
                 <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
             </footer>
