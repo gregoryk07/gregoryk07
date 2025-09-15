@@ -9,14 +9,22 @@
 </head>
 <body>
     <h1>Pozycja i prędkość</h1>
-    <p id="dlugosc_geograficzna">dlugosc</p>
-    <p id="szerokosc_geograficzna">szerokosc</p>
-    <p id="dokladność"></p>
+    <p>dlugosc: <span id="dlugosc_geograficzna"></span></p>
+    <p>szerokosc: <span id="szerokosc_geograficzna"></span></p>
+    <p>dokladnosc: <span id="dokladnosc"></span></p>
+    <p>timestamp: <span id="timestamp"></span></p>
+    <p>wysokosc: <span id="wysokosc"></span></p>
+    <p>predkosc: <span id="speed"></span></p>
     <div id="map" style="height: 800px; width: 800px"></div>
     <script>
         navigator.geolocation.watchPosition((position) => {
             document.getElementById("szerokosc_geograficzna").innerHTML = position.coords.latitude;
             document.getElementById("dlugosc_geograficzna").innerHTML = position.coords.longitude;
+            document.getElementById("dokladnosc").innerHTML = position.coords.accuracy;
+            document.getElementById("timestamp").innerHTML = position.timestamp;
+            document.getElementById("wysokosc").innerHTML = position.coords.altitude;
+            document.getElementById("speed").innerHTML = position.coords.speed;
+
             
             var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
 
