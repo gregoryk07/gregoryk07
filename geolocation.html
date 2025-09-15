@@ -14,6 +14,7 @@
     <p>dokladnosc: <span id="dokladnosc"></span></p>
     <p>timestamp: <span id="timestamp"></span></p>
     <p>wysokosc: <span id="wysokosc"></span></p>
+    <p>wysokosc dokladność: <span id="wysokosc_dokladnosc"></span></p>
     <p>predkosc: <span id="speed"></span></p>
     <div id="map" style="height: 200px; width: 200px"></div>
     <script>
@@ -24,6 +25,7 @@
             document.getElementById("timestamp").innerHTML = position.timestamp;
             document.getElementById("wysokosc").innerHTML = position.coords.altitude;
             document.getElementById("speed").innerHTML = position.coords.speed;
+            document.getElementById("wysokosc_dokladnosc").innerHTML = position.coords.altitudeAccuracy;
 
             
             var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 13);
