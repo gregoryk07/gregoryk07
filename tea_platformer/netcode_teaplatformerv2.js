@@ -104,22 +104,22 @@
 				document.getElementById("netplayer-" + players[i].id).style.transform = "translate(" + players[i].x + "px, " + players[i].y + "px)";
 				
                 var sprite = "tea_idle_1";
-                if(players.dx < 0 && player.crouch == 1){
+                if(players[i].dx < 0 && players[i].crouch == 1){
                     sprite = "tea_crouch_left";
                 }
-                else if(players.crouch == 1){
+                else if(players[i].crouch == 1){
                     sprite = "tea_crouch_right";
                 }
-                else if(player.jump && player.dx < 0){
+                else if(players[i].jump && players[i].dx < 0){
                     sprite = "tea_jump_left";
                 }
-                else if(player.jump){
+                else if(players[i].jump){
                     sprite = "tea_jump_right";
                 }
-                else if(player.dx > 0){
+                else if(players[i].dx > 0){
                     sprite = "tea_walk_right_" + ((animSequence > 10) ? 2 : 1);
                 }
-                else if(player.dx < 0){
+                else if(players[i].dx < 0){
                     sprite = "tea_walk_left_" + ((animSequence > 10) ? 2 : 1);
                 }
                 else{
