@@ -148,11 +148,18 @@ const delay = (delayInms) => {
         player.style.transform = "translate(" +xpos + "px ," + ypos + "px)";
         // console.log("translate(" +xpos + "px ," + ypos + "px)");
 
+        handleNetCodeUpdates();
+
 
         var delayres = await delay(timeout);
 
         if(doLoop) mainLoop();
     };
+
+async function handleNetCodeUpdates(){
+    if(connected)
+        updateNetworkPlayer(xpos, ypos, xvector, !grounded ? 1 : 0, crouching ? 1 : 0);
+}
 
 
 function mainLoopStart(){

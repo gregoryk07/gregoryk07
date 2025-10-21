@@ -25,6 +25,7 @@
     <link rel="shortcut icon" href="assets/tea_idle_2.png" type="image/x-icon">
 </head>
 <body style="width: 100%; overflow-x: hidden;"><!-- Width change here -->
+    <div id="netparent"></div>
     <div id="game" style="background: url(assets/backgroundpage.jpg); background-size: 576px 100%; background-repeat: repeat-x; height: 576px; width: 4096px; image-rendering: pixelated;"> <!-- Width change here -->
         <div id="pauseMenu" style="width: 100%; height: 576px; position: absolute; z-index: 11;">
             <div id="pausemenubackground" style="background-color: black; opacity: 0.5; width: 100%; height: 576px;"></div>
@@ -58,7 +59,18 @@
         <a href="editor.html">Go To Editor (IN PROGRESS)</a>
         <button onclick="editLevel()">Edit this level</button>
     </div>
+    <div>
+        <h4>Multiplayer</h4>
+        <input type="text" id="net_ip_addr_and_port" placeholder="Enter IP and port number">
+        <input type="button" onclick="connect()" value="Connect (EXPERIMENTAL)">
+        <a href="#">download server files</a>
+    </div>
 </div>
 </body>
+<script>
+    
+    var connected = false;
+</script>
 <script src="main.js"></script>
+<script src="netcode_teaplatformerv2.js"></script>
 </html>
