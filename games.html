@@ -4,49 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="sw.js"></script>
+    <script src="installapp.js"></script>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="gameliststyle.css">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+    <link rel="stylesheet" href="splashscreen.css">
 </head>
 <body>
-    <input type="checkbox" id="toggler">
-    <div id="front">
-        <div id="main">
-            <nav id="nav"><a href="index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="menuico.png" height="20px" width="20px"></label><ul>
-                <hr><a href="games.html"><li>GAMES</li></a><hr><a href="about.html"><li>ABOUT</li></a><hr><a href="tools.html"><li>TOOLS</li></a><hr>
-            </ul></nav>
-            <div id="scrollview">
-                <div id="gamelist">
-                    <article id="gamecard">
+    <script src="langpack.js"></script>
+    <input type="checkbox" id="fadesplash">
+    <div id="splashscreen">
+        <div id="splashimg"></div>
+        <input type="checkbox" id="loadingstuckcheck">
+        <h4 id="loadingstucktext">It's taking longer than usual</h4>
+    </div>
+    <script>
+        $$("loadingstucktext").innerText = langpack.splashscreen.screenstuck[lang];
+        
+    </script>
+
+    <div id="back">
+        <main>
+            <input type="checkbox" name="navtoggle" id="navtoggle" hidden>
+            <nav>
+                <h1><a href="index.html?nosplash=true">GREGORYK07</a></h1>
+                <label for="navtoggle" id="navtogglelabel"><img src="img/menuico.png" alt=""></label>
+                <ul>
+                    <li><a href="games.html?nosplash=true">GAMES</a></li>
+                    <li><a href="about.html?nosplash=true">ABOUT</a></li>
+                    <li><a href="tools.html?nosplash=true">TOOLS</a></li>
+                </ul>
+            </nav>
+            <section id="scrollview">
+                    <article class="gamecard">
                         <img src="tea_platformer/assets/tea_idle_1.png" alt="">
                         <h2>Tea&nbsp;Platformer</h2>
-                        <a href="games/tea_platformer.html">View</a>
+                        <a href="games/tea_platformer.html?nosplash=true">View</a>
                     </article>
-                    <article id="gamecard">
-                        <img src="404.png" alt="">
+                    <article class="gamecard">
+                        <img src="img/404.png" alt="">
                         <h2>Glitchfront</h2>
-                        <a href="games/glitchfront.html">View</a>
+                        <a href="games/glitchfront.html?nosplash=true">View</a>
                     </article>
-                    <article id="gamecard">
-                        <img src="polylandiaicon.png" alt="">
+                    <article class="gamecard">
+                        <img src="img/polylandiaicon.png" alt="">
                         <h2>Polylandia</h2>
-                        <a href="games/polylandia.html">View</a>
+                        <a href="games/polylandia.html?nosplash=true">View</a>
                     </article>
-                    <article id="gamecard">
-                        <img src="404.png" alt="">
+                    <article class="gamecard">
+                        <img src="img/404.png" alt="">
                         <h2>Titanfall 3</h2>
-                        <a href="games/titanfall3.html">View</a>
+                        <a href="games/titanfall3.html?nosplash=true">View</a>
                     </article>
-                    <article id="gamecard">
-                        <img src="netsurfersico.png" style="image-rendering: auto;" alt="">
+                    <article class="gamecard">
+                        <img src="img/netsurfersico.png" style="image-rendering: auto;" alt="">
                         <h2>NetSurfers</h2>
-                        <a href="games/netsurfers.html">View</a>
+                        <a href="games/netsurfers.html?nosplash=true">View</a>
                     </article>
-                    <article id="gamecard">
-                        <img src="404.png" alt="">
+                    <article class="gamecard">
+                        <img src="img/404.png" alt="">
                         <h2>Multiplayer&nbsp;Test</h2>
-                        <a href="games/mptest.html">View</a>
+                        <a href="games/mptest.html?nosplash=true">View</a>
                     </article>
                     <article>
                         <h2>Launcher</h2>
@@ -57,207 +76,27 @@
                         <h2>NOTE</h2>
                         <p>All the games mentioned above are NOT fully completed. They probably will be in the future.</p>
                     </article>
-                <!-- v2 
-                <article>
-                    <div>
-                    <h1>
-                        Tea Platformer
-                        </h1>
-                        <p>
-                        A simple platformer with level editor.
-                    </p>
-                    </div>
-                    <a href="games/tea_platformer.html">
-                    View
-                    </a>
-                </article>
-                <article>
-                    <div>
-                    <h1>
-                        Glitchfront
-                        </h1>
-                        <p>
-                        Singleplayer <abbr title="Third Person Player">TPP</abbr> shooter
-                    </p>
-                    </div>
-                    <a href="games/glitchfront.html">
-                    View
-                    </a>
-                </article>
-                <article>
-                    <div>
-                    <h1>
-                        Polylandia
-                        </h1>
-                        <p>
-                        FPP Shooter prototype
-                    </p>
-                    </div>
-                    <a href="games/polylandia.html">
-                    View
-                    </a>
-                </article>
-                <article>
-                    <div>
-                    <h1>
-                        Titanfall 3
-                        </h1>
-                        <p>
-                        Multiplayer FPS
-                    </p>
-                    </div>
-                    <a href="games/titanfall3.html">
-                    View
-                    </a>
-                </article>
-                <article>
-                    <div>
-                    <h1>
-                        NetSurfers
-                        </h1>
-                        <p>
-                        FPP Open World
-                    </p>
-                    </div>
-                    <a href="games/netsurfers.html">
-                    View
-                    </a>
-                </article>
-                <article>
-                    <div>
-                    <h1>
-                        Multiplayer Test
-                        </h1>
-                        <p>
-                        FPS Multiplayer Test
-                    </p>
-                    </div>
-                    <a href="games/mptest.html">
-                    View
-                    </a>
-                </article>
-                </div>
-                <article>
-                    <h2>Launcher</h2>
-                    <p>All the games are or will be added to POGLauncher which you can download <a href="https://github.com/gregoryk07/POGLauncher/releases/tag/POGLauncher">Here</a>.</p>
-                    <p>It is recomended to download it as it comes with automatic updates for games and itself.</p>
-                </article>
-                <article>
-                    <h2>NOTE</h2>
-                    <p>All the games mentioned above are NOT fully completed. They probably will be in the future.</p>
-                </article> -->
-                <!-- v1
-                <article>
-                    <header>
-                        <h2>Games</h2>
-                    </header>
-                    <p>
-                        Below are games that are or were developed by me
-                    </p>
-                    <hr>
-                    <div class="cards">
-                    <div class="cardlayout">
-                        <div class="card">
-                            <div class="cardimage"><div class="imggradient"></div><img src="404.png" height="170px"></div>
-                            <div class="cardcontent">
-                                <h1>
-                                    Glitchfront
-                                    </h1>
-                                    <p>
-                                    Singleplayer <abbr title="Third Person Player">TPP</abbr> shooter
-                                </p>
-                                <a href="games/glitchfront.html">
-                                View
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardlayout">
-                        <div class="card">
-                            <div class="cardimage"><div class="imggradient"></div><img src="polylandiabackground.png" height="170px"></div>
-                            <div class="cardcontent">
-                                <h1>
-                                    Polylandia
-                                    </h1>
-                                    <p>
-                                    FPP Shooter prototype
-                                </p>
-                                <a href="games/polylandia.html">
-                                View
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardlayout">
-                        <div class="card">
-                            <div class="cardimage"><div class="imggradient"></div><img src="404.png" height="170px"></div>
-                            <div class="cardcontent">
-                                <h1>
-                                    Titanfall 3
-                                    </h1>
-                                    <p>
-                                    Multiplayer FPS
-                                </p>
-                                <a href="games/titanfall3.html">
-                                View
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardlayout">
-                        <div class="card">
-                            <div class="cardimage"><div class="imggradient"></div><img src="netsurfersico.png" height="170px"></div>
-                            <div class="cardcontent">
-                                <h1>
-                                    NetSurfers
-                                    </h1>
-                                    <p>
-                                    FPP Open World
-                                </p>
-                                <a href="games/netsurfers.html">
-                                View
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardlayout">
-                        <div class="card">
-                            <div class="cardimage"><div class="imggradient"></div><img src="404.png"  height="170px"></div>
-                            <div class="cardcontent">
-                                <h1>
-                                    Multiplayer Test
-                                    </h1>
-                                    <p>
-                                    FPS Multiplayer Test
-                                </p>
-                                <a href="games/mptest.html">
-                                View
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <hr>
-                    <h2>Launcher</h2>
-                    <p>All the games are or will be added to POGLauncher which you can download <a href="https://github.com/gregoryk07/POGLauncher/releases/tag/POGLauncher">Here</a>.</p>
-                    <p>It is recomended to download it as it comes with automatic updates for games and itself.</p>
-                    <hr>
-                    <h2>NOTE</h2>
-                <p>All the games mentioned above are NOT fully completed. They probably will be in the future.</p>
-                </div>
-                </article>
-            -->
-                </div>
-            </div>
+            </section>
             <footer>
                 <hr>
                 &copy; Copyright gregoryk07 <span id="copyrightYear"></span><br>
                 <script>
                     document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+                    function diff_years(dt2, dt1)
+                    {
+                        var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+                        diff /= (60 * 60 * 24);
+                        return Math.abs(Math.round(diff/365.25));
+                    }
+                    document.getElementById("age").innerText = diff_years(new Date(), new Date(2007, 0, 5, 12, 0, 0, 0));
                 </script>
-                <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
+                <a href="instructions.html?nosplash=true">Instructions</a> <a href="privacy.html?nosplash=true">Privacy Policy</a>
             </footer>
-        </div>
+        </main>
     </div>
+
+
+    
+    <script src="splashscreen.js"></script>
 </body>
 </html>

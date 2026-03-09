@@ -1,0 +1,14 @@
+{
+  "name": "GREGORYK07 APP",
+  "short_name": "GREGORYK07",
+  "start_url": "/gregoryk07",
+  "display": "standalone",
+  "icons": [
+  {
+    "src": "img/favicon.png",
+    "sizes": "748x748",
+    "type": "image/png",
+    "purpose": "any"
+  }
+]
+}

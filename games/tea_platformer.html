@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GREGORYK07</title>
+    <link rel="manifest" href="../manifest.json">
+    <script src="../sw.js"></script>
+    <script src="../installapp.js"></script>
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
-    <script src="../script.js"></script>
+    <link rel="stylesheet" href="../splashscreen.css">
     <link rel="stylesheet" href="gamegridstyle.css">
+    <script src="../script.js"></script>
 </head>
 <body>
     <div id="panel" style="display: none">
@@ -23,15 +26,31 @@
         <a><button onclick="hidePopup()" class="lbutton">OK</button></a>
     </div>
     </div>
-    <input type="checkbox" id="toggler">
-    <div id="front">
-        <div id="main">
-            <nav id="nav"><a href="../index.html"><h1>GREGORYK07</h1></a><label for="toggler"><img src="../menuico.png" height="20px" width="20px"></label><ul>
-                <a href="../games.html"><li>GAMES</li></a>
-                <a href="../about.html"><li>ABOUT</li></a>
-                <a href="../tools.html"><li>TOOLS</li></a>
-            </ul></nav>
-            <div id="scrollview">
+    <script src="../langpack.js"></script>
+    <input type="checkbox" id="fadesplash">
+    <div id="splashscreen">
+        <div id="splashimg"></div>
+        <input type="checkbox" id="loadingstuckcheck">
+        <h4 id="loadingstucktext">It's taking longer than usual</h4>
+    </div>
+    <script>
+        $$("loadingstucktext").innerText = langpack.splashscreen.screenstuck[lang];
+        
+    </script>
+
+    <div id="back">
+        <main>
+            <input type="checkbox" name="navtoggle" id="navtoggle" hidden>
+            <nav>
+                <h1><a href="../index.html?nosplash=true">GREGORYK07</a></h1>
+                <label for="navtoggle" id="navtogglelabel"><img src="../img/menuico.png" alt=""></label>
+                <ul>
+                    <li><a href="../games.html?nosplash=true">GAMES</a></li>
+                    <li><a href="../about.html?nosplash=true">ABOUT</a></li>
+                    <li><a href="../tools.html?nosplash=true">TOOLS</a></li>
+                </ul>
+            </nav>
+            <section id="scrollview">
                 <div id="grid">
                     <article id="grid-name">
                         <h2>Tea Platformer</h2>
@@ -48,17 +67,28 @@
                     </article>
                
                 </div>
-            </div>
+            </section>
             <footer>
                 <hr>
                 &copy; Copyright gregoryk07 <span id="copyrightYear"></span><br>
                 <script>
                     document.getElementById("copyrightYear").innerText = new Date().getFullYear();
+                    function diff_years(dt2, dt1)
+                    {
+                        var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+                        diff /= (60 * 60 * 24);
+                        return Math.abs(Math.round(diff/365.25));
+                    }
+                    document.getElementById("age").innerText = diff_years(new Date(), new Date(2007, 0, 5, 12, 0, 0, 0));
                 </script>
-                <a href="instructions.html">Instructions</a> <a href="privacy.html">Privacy Policy</a>
+                <a href="../instructions.html?nosplash=true">Instructions</a> <a href="../privacy.html?nosplash=true">Privacy Policy</a>
             </footer>
-        </div>
+        </main>
     </div>
+
+
+    
+    <script src="../splashscreen.js"></script>
+    <script src="../scriptafter.js"></script>
 </body>
-<script src="../scriptafter.js"></script>
 </html>
