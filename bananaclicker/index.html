@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANANA CLICKER</title>
+    <link rel="shortcut icon" href="banana.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="toast">aaa</div>
+    <div id="clickable" onclick="clicker_click()"></div>
+        <img src="star.png" id="star">
+        <img src="banana.png" id="banana">
+    <div id="menu">
+        <!-- <div id="sidebar">
+            <button></button>
+            <button></button>
+            <button></button>
+        </div> -->
+        <div id="content">
+            <button type="button" onclick="buy(0)">Banana tree: <span id="banana_tree_count">0</span></button>
+        </div>
+    </div>
+
+    <div id="score">
+        <table>
+            <tr>
+                <td>Banana: </td>
+                <td id="banana_count"></td>
+            </tr>
+            <tr>
+                <td title="Banana per second">BPS: </td>
+                <td id="banana_bps"></td>
+            </tr>
+            <tr>
+                <td id="multiplier_label"></td>
+                <td id="multiplier_value"></td>
+            </tr>
+        </table>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

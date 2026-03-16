@@ -1,0 +1,221 @@
+*{
+    font-family: Helvetica;
+    font-variant: small-caps;
+    z-index: 5;
+    user-select: none;
+}
+@keyframes riseAndFade {
+    0%{
+        opacity: 0;
+        transform: translateY(0);
+    }
+    15%{
+        opacity: 1;
+    }
+    85%{
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+}
+#clickable{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 4;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin: 0;
+}
+:root{
+    --banana-size: 40%;
+    --banana-offset-x: 32px; 
+    --star-size: 55%;
+}
+body{
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background: url(gradient.png);
+    background-size: 512px;
+    image-rendering: pixelated;
+    animation: scrollbackground infinite 6.7s linear;
+}
+@keyframes scrollbackground{
+    0%{
+        background-position: 0 0;
+    }
+    100%{
+        background-position: 512px -128px;
+    }
+}
+#banana{
+    z-index: 1;
+    left: calc(10% + var(--banana-offset-x)) ;
+    position: fixed;
+    top: calc(50% - (var(--banana-size) / 2));
+    /* width: var(--banana-size); */
+    height: var(--banana-size);
+    image-rendering: pixelated;
+    animation: linear enlargeAndShrink infinite 2s;
+}
+#star{
+    z-index: 1;
+    left: 10%;
+    position: fixed;
+    top: calc(50% - (var(--star-size) / 2));
+    /* width: var(--banana-size); */
+    height: var(--star-size);
+    image-rendering: pixelated;
+    animation: spin 60s linear infinite;
+}
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(359deg);
+    }
+}
+@keyframes enlargeAndShrinkBanana{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.3);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes enlargeAndShrink{
+    0%{
+        transform: scale(1) rotate(0deg);
+    }
+    25%{
+        transform: scale(1.01) rotate(1deg);
+    }
+    50%{
+        transform: scale(1) rotate(0deg);
+    }
+    75%{
+        transform: scale(1.01) rotate(-1deg);
+    }
+    100%{
+        transform: scale(1) rotate(0deg);
+    }
+}
+#menu{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    height: 460px;
+    background-color: rgba(110, 84, 49, 0.5);
+    backdrop-filter: blur(2px);
+    border: darkgray 5px solid;
+    border-right: none;
+    border-bottom: none;
+    display: flex;
+    flex-direction: row-reverse;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+}
+#sidebar{
+    flex: 64px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(80, 80, 80, 0.8);
+}
+#sidebar>*{
+    overflow: hidden;
+    height: 64px;
+    width: 64px;
+}
+#content{
+    width: 100%;
+    overflow: auto;
+}
+#content button{
+    width: calc(100% - 10px);
+    display: block;
+    /* height: 70px; */
+    font-size: 120%;
+    text-align: left;
+    padding: 10px;
+    margin: 5px;
+}
+#score{
+    top: 20px;
+    right: 0;
+    position: fixed;
+    /* height: 75px; */
+    width: 250px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+    background-color: rgba(110, 84, 49, 0.5);
+    backdrop-filter: blur(2px);
+    border: 5px gold solid;
+    border-right: none;
+    text-align: left;
+}
+
+#score table{
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 130%;
+}
+::-webkit-scrollbar{
+    width: 15px;
+    background-color: gray;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(63, 63, 63);
+}
+::-webkit-scrollbar-thumb:hover{
+    cursor: grab;
+}
+::-webkit-scrollbar-thumb:active{
+    cursor: grabbing;
+}
+#toast{
+    background-color: rgb(110, 110, 110);
+    border: 2px rgb(49, 49, 49) solid;
+    border-top: none;
+    position: fixed;
+    left: 20px;
+    padding: 20px;
+    top: 0;
+    height: 15px;
+    padding-top: 10px;
+    color: white;
+    font-weight: bold;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transform: translateY(-47px);
+    overflow: hidden;
+    transition: 400ms;
+    font-size: 120%;
+    z-index: 10;
+}
+@media screen and (max-width: 800px) {
+    #banana{
+        left: 0;
+    }
+    #star{
+        left: 0;
+    }
+    #menu{
+        height: 25dvh;
+    }
+    ::-webkit-scrollbar{
+        width: 0;
+        background-color: gray;
+    }
+}
