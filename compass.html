@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPASS</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        body{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        #dir{
+            margin: auto;
+            background-color: gray;
+            width: 40vh;
+            height: 40vh;
+            padding: 10px;
+            display: grid;
+            clip-path: circle(50% at 50% 50%);
+            align-items: center;
+            text-align: center;
+            font-size: 200%;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>COMPASS</h1>
+    <p id="status">NO TRACKING DATA AVAILABLE</p>
+    <div id="dir">
+        <div id="text">100M</div>
+    </div>
+    <script>
+
+        var waypoints = [{
+            name: "",
+            lat: 54.209169,
+            long: 15.723133
+        }]
+
+        var $ = (id) => document.getElementById(id);
+        meter_per_degree = 40000000/360;
+        navigator.geolocation.watchPosition((p)=>{
+            console.log(p.toJSON());
+            if(p.coords.heading == null){
+                $("status").innerHTML = "NO DIRECTION DATA AVAILABLE";
+            }
+            else{
+
+            }
+            $("text").innerHTML = Math.round(Math.sqrt(Math.abs(Math.pow(p.coords.latitude - waypoints[0].lat, 2) + Math.pow(p.coords.longitude - waypoints[0].long, 2))) * meter_per_degree) + " M";
+
+        });
+    </script>
+</body>
+</html>
