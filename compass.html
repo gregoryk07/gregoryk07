@@ -38,9 +38,9 @@
     <script>
 
         var waypoints = [{
-            name: "",
-            lat: 54.209169,
-            long: 15.723133
+            name: "Wrocław Główny",
+            lat: 51.098137,
+            long: 17.0307021
         }]
 
         var $ = (id) => document.getElementById(id);
@@ -48,11 +48,12 @@
         navigator.geolocation.watchPosition((p)=>{
             console.log(p.toJSON());
             if(p.coords.heading == null){
-                $("status").innerHTML = "NO DIRECTION DATA AVAILABLE";
+                //$("status").innerHTML = "NO DIRECTION DATA AVAILABLE";
             }
             else{
 
             }
+            $("status").innerHTML = '"'+waypoints[0].name+'"';
             $("text").innerHTML = Math.round(Math.sqrt(Math.abs(Math.pow(p.coords.latitude - waypoints[0].lat, 2) + Math.pow(p.coords.longitude - waypoints[0].long, 2))) * meter_per_degree) + " M";
 
         });
