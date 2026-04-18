@@ -56,7 +56,7 @@
             }
             $("status").innerHTML = '"'+waypoints[0].name+'"';
             $("text").innerHTML = Math.round(Math.sqrt(Math.abs(Math.pow(p.coords.latitude - waypoints[0].lat, 2) + Math.pow(p.coords.longitude - waypoints[0].long, 2))) * meter_per_degree) + " M";
-            $("vel").innerHTML = p.coords.velocity * 3.6 + " KPH";
+            $("vel").innerHTML = p.coords.speed * 3.6 + " KPH";
                 
 
         });
