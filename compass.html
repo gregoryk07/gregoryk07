@@ -43,10 +43,6 @@
             lat: 51.098137,
             long: 17.0307021
         }]
-        dist1 = 0;
-        dist2 = 0;
-        time1 = 0;
-        time2 = 0;
 
         var $ = (id) => document.getElementById(id);
         meter_per_degree = 40000000/360;
@@ -58,15 +54,9 @@
             else{
 
             }
-            dist2 = dist1;
-            dist1 = Math.sqrt(Math.abs(Math.pow(p.coords.latitude - waypoints[0].lat, 2) + Math.pow(p.coords.longitude - waypoints[0].long, 2))) * meter_per_degree;
-            time2 = time1;
-            time1 = p.timestamp;
             $("status").innerHTML = '"'+waypoints[0].name+'"';
             $("text").innerHTML = Math.round(Math.sqrt(Math.abs(Math.pow(p.coords.latitude - waypoints[0].lat, 2) + Math.pow(p.coords.longitude - waypoints[0].long, 2))) * meter_per_degree) + " M";
-            if(dist1!=0&&dist2!=0){
-                $("vel").innerHTML = Math.round(Math.abs((dist1 - dist2) / 1000) / Math.abs((time1 - time2) / 3600000)) + " KPH";
-            }
+            $("vel").innerHTML = p.coords.velocity * 3.6 + " KPH";
                 
 
         });
