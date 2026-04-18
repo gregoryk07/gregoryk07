@@ -65,7 +65,8 @@
             $("status").innerHTML = '"'+waypoints[0].name+'"';
             $("text").innerHTML = Math.round(Math.sqrt(Math.abs(Math.pow(p.coords.latitude - waypoints[0].lat, 2) + Math.pow(p.coords.longitude - waypoints[0].long, 2))) * meter_per_degree) + " M";
             if(dist1!=0&&dist2!=0){
-                $("vel").innerHTML = Math.round(Math.Abs((dist1 - dist2) / 1000) / Math.Abs((time1 - time2) / 3600000)) + " KPH";
+                $("vel").innerHTML = Math.round(Math.abs((dist1 - dist2) / 1000) / Math.abs((time1 - time2) / 3600000)) + " KPH";
+            }
                 
 
         });
