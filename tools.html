@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="splashscreen.css">
     <link rel="stylesheet" href="instructions-style.css">
+    <script src="scriptafter.js"></script>
 </head>
 <body>
     <script src="langpack.js"></script>
@@ -48,7 +49,8 @@
                     <nav>
                         <ul>
                             <li><a href="#registerprotocol">Register Protocol</a></li><br>
-                            <li><a href="#gcalc">Command line Graphic Calculator</a></li>
+                            <li><a href="#gcalc">Command line Graphic Calculator</a></li><br>
+                            <li><a href="#arcore_depth_sensing">Depth sensing via AR Core</a></li>
                         </ul>
                     </nav>
                     </article>
@@ -83,6 +85,28 @@
                     <p>Fully functional graphic calculator inside of a command line</p>
                     <p>Check the instruction <a href="instructions.html#gcalc?nosplash=true">here</a></p>
                     <a href="https://github.com/gregoryk07/gcalc/releases/tag/Release" target="_blank">GITHUB PAGE</a>
+                        </div>
+                    </div>
+                </article>
+                <article id="arcore_depth_sensing">
+                    <input type="checkbox" id="section3">
+                    <div class="cntnt">
+                    <div class="head">
+                        <div class="content">Depth sensing via AR Core</div>
+                        <label for="section3" style="font-size: 50px">
+                            <img src="assets/arrow.png" width="50px" height="50px" alt="">
+                        </label>
+                    </div>
+                    <hr>
+                        <div class="desc">
+                            <p>Depth visualization using a heatmap and utilizing AR Core</p>
+                            <p>Check it out on your phone <a href="depthsensing_arcore.html" target="_blank">Here</a></p>
+                            <script>
+                                let currentOS = detectOS();
+                                if(currentOS.toLowerCase() != "Android".toLowerCase() || currentOS.toLowerCase() != "iOS".toLowerCase()){
+                                    document.write("<p>Or scan this QR code on your phone</p><img class=\"qrcode\" height=\"200\" width=\"200\" src=\"https://api.qrserver.com/v1/create-qr-code/?data=https://gregoryk07.github.io/gregoryk07/depthsensing_arcore.html&size=200x200\">")
+                                }
+                            </script>
                         </div>
                     </div>
                 </article>
