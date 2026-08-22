@@ -103,7 +103,10 @@
                             <p>Check it out on your phone <a href="depthsensing_arcore.html" target="_blank">Here</a></p>
                             <script>
                                 let currentOS = detectOS();
-                                if(currentOS.toLowerCase() != "Android".toLowerCase() || currentOS.toLowerCase() != "iOS".toLowerCase()){
+                                if(currentOS.toLowerCase() == "Android".toLowerCase() || currentOS.toLowerCase() == "iOS".toLowerCase()){
+                                    
+                                }
+                                else{
                                     document.write("<p>Or scan this QR code on your phone</p><img class=\"qrcode\" height=\"200\" width=\"200\" src=\"https://api.qrserver.com/v1/create-qr-code/?data=https://gregoryk07.github.io/gregoryk07/depthsensing_arcore.html&size=200x200\">")
                                 }
                             </script>
