@@ -286,3 +286,8 @@ main>nav label{
         height: calc(100dvh - 120px);
     }
 }
+.qrcode{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+}
