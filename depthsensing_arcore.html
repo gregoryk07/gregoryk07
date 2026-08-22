@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>WebXR Depth - Heatmapa Termowizyjna (Naprawiona oś Y)</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        #info { 
+            position: absolute; top: 10px; left: 10px; color: #fff; 
+            background: rgba(0, 0, 0, 0.5); padding: 8px; font-family: monospace; z-index: 100; pointer-events: none; 
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Inicjalizacja...</div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { ARButton } from 'three/addons/webxr/ARButton.js';
+
+        let scene, camera, renderer, depthMaterial, fullscreenQuad;
+        let depthDataTexture = null;
+        let floatBuffer = null;
+        let isReady = false;
+        const info = document.getElementById('info');
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 20);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.xr.enabled = true;
+            document.body.appendChild(renderer.domElement);
+
+            const button = ARButton.createButton(renderer, {
+                requiredFeatures: ['depth-sensing'],
+                depthSensing: { 
+                    usagePreference: ['cpu-optimized'], 
+                    dataFormatPreference: ['luminance-alpha'] 
+                }
+            });
+            document.body.appendChild(button);
+
+            setupDepthShader();
+            
+            renderer.xr.addEventListener('sessionstart', () => {
+                info.innerText = "Sesja aktywna. Szukam głębi...";
+            });
+
+            renderer.setAnimationLoop(render);
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function setupDepthShader() {
+            depthMaterial = new THREE.ShaderMaterial({
+                uniforms: {
+                    uDepthTexture: { value: null },
+                    uMaxDistance: { value: 3.5 }, // Maksymalny zasięg w metrach
+                    uDepthUvTransform: { value: new THREE.Matrix4() } 
+                },
+                vertexShader: `
+                    varying vec2 vUv;
+                    void main() { 
+                        // Odbijamy oś Y tutaj, aby poprawnie zsynchronizować obraz z kamerą
+                        vUv = vec2(uv.x, 1.0 - uv.y); 
+                        gl_Position = vec4(position, 1.0); 
+                    }
+                `,
+                fragmentShader: `
+                    uniform sampler2D uDepthTexture;
+                    uniform float uMaxDistance;
+                    uniform mat4 uDepthUvTransform;
+                    varying vec2 vUv;
+
+                    // Paleta kolorów w stylu termowizji (Ironbow)
+                    vec3 getThermalColor(float t) {
+                        float h = clamp(1.0 - t, 0.0, 1.0);
+                        vec3 color;
+                        if (h < 0.25) {
+                            color = mix(vec3(0.0, 0.0, 0.1), vec3(0.4, 0.0, 0.5), h / 0.25);
+                        } else if (h < 0.5) {
+                            color = mix(vec3(0.4, 0.0, 0.5), vec3(0.9, 0.1, 0.0), (h - 0.25) / 0.25);
+                        } else if (h < 0.75) {
+                            color = mix(vec3(0.9, 0.1, 0.0), vec3(1.0, 0.8, 0.0), (h - 0.5) / 0.25);
+                        } else {
+                            color = mix(vec3(1.0, 0.8, 0.0), vec3(1.0, 1.0, 1.0), (h - 0.75) / 0.25);
+                        }
+                        return color;
+                    }
+
+                    void main() {
+                        vec4 texCoord = uDepthUvTransform * vec4(vUv, 0.0, 1.0);
+                        vec2 depthUv = texCoord.xy / texCoord.w;
+
+                        if (depthUv.x < 0.0 || depthUv.x > 1.0 || depthUv.y < 0.0 || depthUv.y > 1.0) {
+                            gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+                            return;
+                        }
+
+                        float depth = texture2D(uDepthTexture, depthUv).r;
+
+                        if (depth > 20.0 || depth <= 0.0) {
+                             gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+                             return;
+                        }
+
+                        float normalizedDepth = clamp(depth / uMaxDistance, 0.0, 1.0);
+                        vec3 finalColor = getThermalColor(normalizedDepth);
+                        
+                        gl_FragColor = vec4(finalColor, 1.0); 
+                    }
+                `,
+                transparent: true,
+                depthTest: false, 
+                depthWrite: false
+            });
+
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            fullscreenQuad = new THREE.Mesh(geometry, depthMaterial);
+            fullscreenQuad.frustumCulled = false;
+            scene.add(fullscreenQuad);
+            isReady = true;
+        }
+
+        function render(timestamp, frame) {
+            if (frame && isReady) {
+                const referenceSpace = renderer.xr.getReferenceSpace();
+                const viewerPose = frame.getViewerPose(referenceSpace);
+
+                if (viewerPose) {
+                    const view = viewerPose.views[0];
+                    const depthInfo = frame.getDepthInformation(view);
+                    
+                    if (depthInfo) {
+                        const rawData16 = new Uint16Array(depthInfo.data);
+                        
+                        if (!floatBuffer || floatBuffer.length !== rawData16.length) {
+                            floatBuffer = new Float32Array(rawData16.length);
+                        }
+
+                        for (let i = 0; i < rawData16.length; i++) {
+                            floatBuffer[i] = rawData16[i] * depthInfo.rawValueToMeters;
+                        }
+
+                        if (!depthDataTexture) {
+                            depthDataTexture = new THREE.DataTexture(
+                                floatBuffer, depthInfo.width, depthInfo.height, 
+                                THREE.RedFormat, THREE.FloatType
+                            );
+                            depthDataTexture.magFilter = THREE.NearestFilter;
+                            depthDataTexture.minFilter = THREE.NearestFilter;
+                            depthMaterial.uniforms.uDepthTexture.value = depthDataTexture;
+                            info.innerText = "Tryb Termowizyjny Aktywny";
+                        } else {
+                            depthDataTexture.image.data.set(floatBuffer);
+                            depthDataTexture.needsUpdate = true;
+                        }
+
+                        depthMaterial.uniforms.uDepthUvTransform.value.fromArray(depthInfo.normDepthBufferFromNormView.matrix);
+                        depthMaterial.needsUpdate = true;
+                    }
+                }
+            }
+            renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        init();
+    </script>
+</body>
+</html>
